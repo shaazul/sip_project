@@ -1,0 +1,175 @@
+<div class="system-user">
+
+    <div class="system-user-header">
+        <h1>User List</h1>
+    </div>
+
+    <div class="card">
+
+        <div class="user-toolbar">
+            <div class="user-toolbar-left">
+                <p-button label="Add User" icon="pi pi-plus" (click)="openNew()"></p-button>
+            </div>
+
+            <div class="user-toolbar-right">
+                <p-iconfield iconPosition="left">
+                    <p-inputicon>
+                        <i class="pi pi-search"></i>
+                    </p-inputicon>
+                    <input pInputText type="text" [(ngModel)]="globalSearch"
+                        (input)="userTable.filterGlobal($any($event.target).value, 'contains')"
+                        placeholder="Search..." />
+                </p-iconfield>
+
+                <p-button label="Clear" icon="pi pi-filter-slash" [outlined]="true"
+                    (click)="clear(userTable)"></p-button>
+            </div>
+        </div>
+
+        <p-table #userTable [value]="users" dataKey="username"
+            styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines" [rows]="10" [paginator]="true"
+            [rowsPerPageOptions]="[10, 25, 50]" [globalFilterFields]="['displayName','username','email','role']">
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Last Login</th>
+                    <th style="width:160px;text-align:center">Action</th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-row>
+                <tr>
+                    <td>{{ row.displayName }}</td>
+                    <td>{{ row.username }}</td>
+                    <td>{{ row.email }}</td>
+                    <td>{{ row.role }}</td>
+                    <td>{{ row.lastLogin }}</td>
+                    <td class="action-cell">
+
+                        <button class="action-icon info" (click)="viewUserInfo(row)">
+                            <i class="pi pi-info-circle"></i>
+                        </button>
+
+                        <button class="action-icon edit" (click)="editUser(row)">
+                            <i class="pi pi-cog"></i>
+                        </button>
+
+                        <button class="action-icon delete" (click)="confirmDelete(row)">
+                            <i class="pi pi-trash"></i>
+                        </button>
+
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <!-- ADD / EDIT -->
+    <p-dialog [(visible)]="isVisible" [modal]="true" [style]="{ width: '32rem' }">
+        <ng-template pTemplate="header">
+            <h2>{{ isNew ? 'Add System User' : 'Edit System User' }}</h2>
+        </ng-template>
+
+        <div class="dialog-body">
+
+            <div class="form-group">
+                <label>Name</label>
+                <input pInputText [(ngModel)]="user.displayName" />
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input pInputText [(ngModel)]="user.email" />
+            </div>
+
+            <div class="form-group">
+                <label>Username</label>
+                <input pInputText [(ngModel)]="user.username" />
+            </div>
+
+            <div class="form-group">
+                <label>Role</label>
+                <p-dropdown [options]="roles" optionLabel="name" optionValue="name" [(ngModel)]="user.role"
+                    placeholder="Select Role">
+                </p-dropdown>
+            </div>
+
+        </div>
+        <div class="form-group module-section">
+            <label>Accessible Modules</label>
+
+            <div class="module-checkbox-grid">
+                <div *ngFor="let m of allModules" class="module-checkbox">
+                    <p-checkbox [value]="m" [(ngModel)]="selectedModules">
+                    </p-checkbox>
+                    <span>{{ m }}</span>
+                </div>
+            </div>
+        </div>
+
+
+        <ng-template pTemplate="footer">
+            <div class="dialog-footer">
+                <button pButton label="Cancel" [outlined]="true" (click)="cancelDialog()"></button>
+                <button pButton label="Submit" (click)="isNew ? createUser() : updateUser()"></button>
+            </div>
+        </ng-template>
+    </p-dialog>
+
+    <!-- INFO DIALOG -->
+    <p-dialog [(visible)]="infoVisible" [modal]="true" [draggable]="false" [style]="{ width: '32rem' }"
+        header="User Access">
+
+        <div class="info-dialog-body">
+
+            <!-- Name -->
+            <div class="info-row">
+                <label>Name</label>
+                <input pInputText disabled [value]="selectedUser?.displayName" />
+            </div>
+
+            <!-- Role -->
+            <div class="info-row">
+                <label>Role</label>
+                <input pInputText disabled [value]="selectedUser?.role" />
+            </div>
+
+            <!-- Modules -->
+            <!-- <div class="info-row">
+                <label>Accessible Modules</label>
+
+                <ul class="module-list">
+                    <li *ngFor="let m of userModules">
+                        <i class="pi pi-check-circle"></i>
+                        {{ m }}
+                    </li>
+                </ul>
+            </div> -->
+            <div class="form-group">
+                <label>Accessible Modules</label>
+
+                <div class="module-checkbox-grid">
+                    <div *ngFor="let m of allModules" class="module-checkbox">
+                        <p-checkbox [value]="m" [(ngModel)]="selectedModules" [disabled]="true">
+                        </p-checkbox>
+                        <span>{{ m }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ng-template pTemplate="footer">
+            <div class="info-dialog-footer">
+                <button pButton label="Close" [outlined]="true" (click)="infoVisible=false"></button>
+            </div>
+        </ng-template>
+
+    </p-dialog>
+
+
+    <p-confirmdialog></p-confirmdialog>
+</div>

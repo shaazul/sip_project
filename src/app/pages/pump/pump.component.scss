@@ -1,0 +1,72 @@
+.pump {
+    padding: 24px;
+}
+
+.pump-header {
+    margin-bottom: 16px;
+
+    h1 {
+        font-size: 24px;
+        font-weight: 700;
+    }
+}
+
+.pump-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.pump-table {
+    width: 100%;
+}
+
+.cell-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.pill {
+    min-width: 72px;
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 13px;
+    color: #fff;
+}
+
+.pill.on {
+    background: #22c55e;
+}
+
+.pill.off {
+    background: #7b7b7b;
+}
+
+.pill.trip {
+    background: #ff3a3a;
+}
+
+:host ::ng-deep .p-datatable thead th {
+    font-weight: 600;
+}
+
+:host ::ng-deep .p-datatable tbody td {
+    vertical-align: middle;
+}
+
+.custom-filter-row th {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .pill {
+        min-width: auto;
+        padding: 0.3rem 0.6rem;
+        font-size: 12px;
+    }
+}

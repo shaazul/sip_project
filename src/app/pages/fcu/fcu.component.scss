@@ -1,0 +1,185 @@
+.fcu {
+    padding: 24px;
+}
+
+.fcu-header {
+    margin-bottom: 16px;
+
+    h1 {
+        font-size: 24px;
+        font-weight: 700;
+    }
+}
+
+.fcu-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.fcu-dialog-layout {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.fcu-image-panel {
+    text-align: center;
+}
+
+.fcu-image {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    object-fit: contain;
+}
+
+.fcu-image-title {
+    margin-top: 0.75rem;
+    font-weight: 600;
+}
+
+.fcu-table-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.fcu-panel-block {
+    margin-bottom: 0.5rem;
+}
+
+.fcu-panel-type {
+    margin-left: 0.25rem;
+}
+
+.fcu-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #e5e7eb;
+}
+
+.fcu-details-table th {
+    padding: 0.6rem;
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid #e5e7eb;
+    background: #2c3e50;
+    color: #fff;
+}
+
+.fcu-details-table td {
+    padding: 0.55rem;
+    border: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.fcu-details-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+}
+
+.fcu-status-legend {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    max-width: 420px;
+}
+
+.on {
+    background: #22c55e;
+    font-weight: 600;
+}
+
+.off {
+    background: #9ca3af;
+    font-weight: 600;
+}
+
+.cell-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.pill {
+    min-width: 78px;
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 13px;
+    color: #fff;
+}
+
+.pill.on {
+    background: #22c55e;
+}
+
+.pill.off {
+    background: #7b7b7b;
+}
+
+.pill.start {
+    background: #22c55e;
+}
+
+.pill.stop {
+    background: #7b7b7b;
+}
+
+.pill.mode {
+    background: #7b7b7b;
+}
+
+.temp-pill {
+    background: #6366f1;
+    color: #fff;
+    padding: 0.35rem 0.6rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.legend-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.legend-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.35rem;
+}
+
+.legend-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+}
+
+.legend-color.on {
+    background: #22c55e;
+}
+
+.legend-color.off {
+    background: #9ca3af;
+}
+
+.legend-color.alarm {
+    background: #ef4444;
+}
+
+.alarm {
+    background: #ef4444;
+    font-weight: 600;
+    color: #fff;
+}
+
+.manual {
+    background: #ff3a3a;
+    font-weight: 600;
+    color: #fff;
+}

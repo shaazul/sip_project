@@ -1,0 +1,312 @@
+@use 'mixins' as *;
+
+.layout-topbar {
+    position: fixed;
+    height: auto;
+    min-height: 4.75rem;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0 2rem;
+    background-color: var(--surface-card);
+    transition: left var(--layout-section-transition-duration);
+    display: flex;
+    align-items: center;
+
+    .layout-topbar-logo-container {
+        width: 20rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .layout-topbar-logo {
+        display: inline-flex;
+        align-items: center;
+        font-size: 1.5rem;
+        border-radius: var(--content-border-radius);
+        color: var(--text-color);
+        font-weight: 500;
+        gap: 0.5rem;
+
+        svg {
+            width: 3rem;
+        }
+
+        &:focus-visible {
+            @include focused();
+        }
+    }
+
+    .layout-topbar-action {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--text-color-secondary);
+        border-radius: 50%;
+        width: 2.5rem;
+        height: 2.5rem;
+        color: var(--text-color);
+        transition: background-color var(--element-transition-duration);
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--surface-hover);
+        }
+
+        &:focus-visible {
+            @include focused();
+        }
+
+        i {
+            font-size: 1.25rem;
+        }
+
+        span {
+            font-size: 1rem;
+            display: none;
+        }
+
+        &.layout-topbar-action-highlight {
+            background-color: var(--primary-color);
+            color: var(--primary-contrast-color);
+        }
+    }
+
+    .layout-menu-button {
+        margin-right: 0.5rem;
+    }
+
+    .layout-topbar-menu-button {
+        display: none;
+    }
+
+    .layout-topbar-actions {
+        margin-left: auto;
+        display: flex;
+        gap: 1rem;
+        flex-shrink: 0;
+    }
+
+    .layout-topbar-menu-content {
+        display: flex;
+        gap: 1rem;
+        flex-shrink: 0;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    .layout-config-menu {
+        display: flex;
+        gap: 1rem;
+        flex-shrink: 0;
+    }
+
+    // Marquee styles
+    .announcement-container {
+        position: relative;
+        overflow: hidden;
+        height: 1.75rem; // keeps layout stable
+    }
+
+    .marquee {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .marquee-content {
+        position: absolute;
+        white-space: nowrap;
+        will-change: transform;
+        padding-left: 100%; // start fully off-screen to the right
+        animation: marquee-slide var(--marquee-duration, 20s) linear infinite;
+    }
+
+    // Pause on hover
+    .announcement-container:hover .marquee-content {
+        animation-play-state: paused;
+    }
+
+    // Keyframes that ensure the content is off-screen at the right before re-entering
+    // Add longer dwell while off-screen on the right between 0%-15%
+    @keyframes marquee-slide {
+        0% {
+            transform: translateX(0%);
+        }
+        15% {
+            transform: translateX(0%); // dwell off-screen on the right
+        }
+        100% {
+            transform: translateX(-100%); // fully off-screen on the left
+        }
+    }
+
+    // User dropdown styling (only for mobile/tablet)
+    .user-dropdown-container {
+        position: relative;
+    }
+
+    .user-dropdown-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+        background: var(--surface-card);
+        border: 1px solid var(--surface-border);
+        border-radius: 50%;
+        color: var(--text-color);
+        cursor: pointer;
+        transition: all var(--element-transition-duration);
+        width: 2.5rem;
+        height: 2.5rem;
+
+        &:hover {
+            background: var(--surface-hover);
+            border-color: var(--primary-color);
+        }
+
+        &:focus-visible {
+            @include focused();
+        }
+
+        .user-avatar {
+            flex-shrink: 0;
+        }
+    }
+
+    .user-dropdown-menu {
+        .p-menu {
+            min-width: 200px;
+        }
+
+        // Custom styles for menu items
+        .user-menu-header {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .user-menu-time {
+            color: var(--text-color-secondary);
+            font-size: 0.875rem;
+        }
+
+        .user-menu-weather {
+            color: var(--text-color-secondary);
+            font-size: 0.875rem;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .layout-topbar {
+        padding: 0 2rem;
+
+        .layout-topbar-logo-container {
+            width: auto;
+        }
+
+        .layout-menu-button {
+            margin-left: 0;
+            margin-right: 0.5rem;
+        }
+
+        .layout-topbar-menu-button {
+            display: inline-flex;
+        }
+
+        .layout-topbar-menu {
+            position: absolute;
+            background-color: var(--surface-overlay);
+            transform-origin: top;
+            box-shadow:
+                0px 3px 5px rgba(0, 0, 0, 0.02),
+                0px 0px 2px rgba(0, 0, 0, 0.05),
+                0px 1px 4px rgba(0, 0, 0, 0.08);
+            border-radius: var(--content-border-radius);
+            padding: 1rem;
+            right: 2rem;
+            top: 4rem;
+            min-width: 15rem;
+            border: 1px solid var(--surface-border);
+
+            .layout-topbar-menu-content {
+                gap: 0.5rem;
+            }
+
+            .layout-topbar-action {
+                display: flex;
+                width: 100%;
+                height: auto;
+                justify-content: flex-start;
+                border-radius: var(--content-border-radius);
+                padding: 0.5rem 1rem;
+
+                i {
+                    font-size: 1rem;
+                    margin-right: 0.5rem;
+                }
+
+                span {
+                    font-weight: medium;
+                    display: block;
+                }
+            }
+        }
+
+        .layout-topbar-menu-content {
+            flex-direction: column;
+        }
+
+        // Tablet-specific adjustments to prevent clipping
+        .layout-topbar-menu-content {
+            gap: 0.5rem;
+            
+            img {
+                flex-shrink: 0;
+            }
+            
+            .flex.flex-col {
+                min-width: 0;
+                flex-shrink: 1;
+            }
+            
+            .flex.items-center {
+                flex-shrink: 0;
+            }
+        }
+
+        // Responsive user dropdown (tablet)
+        .user-dropdown-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            padding: 0.5rem;
+        }
+    }
+}
+
+// Keep tablet (768–991px) layout horizontal like desktop
+@media (min-width: 768px) and (max-width: 991px) {
+    .layout-topbar {
+        .layout-topbar-menu-content {
+            flex-direction: row;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .layout-topbar {
+        .user-dropdown-btn {
+            width: 3rem;
+            height: 3rem;
+            padding: 0.5rem;
+
+            .user-avatar img {
+                width: 2rem !important;
+                height: 2rem !important;
+            }
+        }
+    }
+}
+
+

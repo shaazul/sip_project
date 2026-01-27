@@ -1,0 +1,181 @@
+<div class="fcu">
+    <div class="fcu-header">
+        <h1>Fan Coil Unit Summary</h1>
+    </div>
+
+    <div class="card">
+
+        <!-- TOOLBAR -->
+        <div class="fcu-toolbar">
+            <p-iconfield iconPosition="left">
+                <p-inputicon>
+                    <i class="pi pi-search"></i>
+                </p-inputicon>
+                <input pInputText type="text" placeholder="Search" [(ngModel)]="globalSearch"
+                    (input)="applyFilters()" />
+            </p-iconfield>
+
+            <p-button label="Clear" icon="pi pi-filter-slash" [outlined]="true" (click)="clearFilters()">
+            </p-button>
+        </div>
+
+        <!-- TABLE -->
+        <p-table [value]="fcuData" styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines" [rows]="10"
+            [paginator]="true" scrollable="true" scrollHeight="flex">
+
+            <!-- HEADER -->
+            <ng-template pTemplate="header">
+
+                <!-- COLUMN TITLES -->
+                <tr>
+                    <th style="width:12%">Level</th>
+                    <th style="width:26%">Status</th>
+                    <th style="width:20%">Timer State</th>
+                    <th style="width:16%">Room Temperature (°C)</th>
+                    <th style="width:16%">Control Mode</th>
+                    <th style="width:10%">Action</th>
+                </tr>
+
+                <!-- FILTER ROW (CUSTOM) -->
+                <tr class="custom-filter-row">
+
+                    <!-- LEVEL -->
+                    <th>
+                        <input pInputText type="text" placeholder="Search level" [(ngModel)]="filterLevel"
+                            (input)="applyFilters()" />
+                    </th>
+
+                    <!-- STATUS (FCU NAME) -->
+                    <th>
+                        <input pInputText type="text" placeholder="Search FCU" [(ngModel)]="filterStatus"
+                            (input)="applyFilters()" />
+                    </th>
+
+                    <!-- TIMER -->
+                    <th>
+                        <p-dropdown [options]="timerOptions" placeholder="Any" [showClear]="true"
+                            [(ngModel)]="filterTimer" (onChange)="applyFilters()" appendTo="body">
+                        </p-dropdown>
+                    </th>
+
+                    <!-- ROOM TEMP -->
+                    <th>
+                        <input pInputText type="text" placeholder="Search temp" [(ngModel)]="filterTemp"
+                            (input)="applyFilters()" />
+                    </th>
+
+                    <!-- CONTROL MODE -->
+                    <th>
+                        <p-dropdown [options]="controlModeOptions" placeholder="Any" [showClear]="true"
+                            [(ngModel)]="filterMode" (onChange)="applyFilters()" appendTo="body">
+                        </p-dropdown>
+                    </th>
+
+                    <th></th>
+                </tr>
+
+            </ng-template>
+
+            <!-- BODY -->
+            <ng-template pTemplate="body" let-row>
+                <tr>
+
+                    <td>{{ row.level }}</td>
+
+                    <!-- STATUS -->
+                    <td>
+                        <div class="cell-wrap">
+                            <span *ngFor="let fcu of row.fcus" class="pill"
+                                [ngClass]="fcu.status === 'On' ? 'on' : 'off'">
+                                {{ fcu.name }}
+                            </span>
+                        </div>
+                    </td>
+
+                    <!-- TIMER -->
+                    <td>
+                        <div class="cell-wrap">
+                            <ng-container *ngFor="let fcu of row.fcus">
+                                <span *ngIf="fcu.timer" class="pill"
+                                    [ngClass]="fcu.timer === 'Start' ? 'start' : 'stop'">
+                                    {{ fcu.timer }}
+                                </span>
+                            </ng-container>
+                        </div>
+                    </td>
+
+                    <!-- TEMP -->
+                    <td>
+                        <div class="cell-wrap">
+                            <ng-container *ngFor="let fcu of row.fcus">
+                                <span *ngIf="fcu.temp !== null" class="temp-pill">
+                                    {{ fcu.temp }}
+                                </span>
+                            </ng-container>
+                        </div>
+                    </td>
+
+                    <!-- MODE -->
+                    <td>
+                        <div class="cell-wrap">
+                            <span *ngFor="let fcu of row.fcus" class="pill mode">
+                                {{ fcu.mode }}
+                            </span>
+                        </div>
+                    </td>
+
+                    <!-- ACTION -->
+                    <td>
+                        <button pButton icon="pi pi-eye" class="p-button-text p-button-sm"
+                            (click)="openLevelDialog(row)">
+                        </button>
+                    </td>
+
+                </tr>
+            </ng-template>
+
+        </p-table>
+    </div>
+</div>
+
+<!-- INFO DIALOG -->
+<p-dialog [(visible)]="infoVisible" [modal]="true" [draggable]="false" [style]="{ width: '70rem' }" header="FCU Details"
+    [breakpoints]="{ '960px': '95vw' }">
+    <div *ngIf="infoAsset" class="fcu-dialog-layout">
+        <div class="fcu-image-panel"> <img src="assets/icons/fcu.png" alt="FCU" class="fcu-image" />
+            <div class="fcu-image-title"> {{ infoAsset.description }} </div>
+        </div>
+        <div class="fcu-table-panel">
+            <div *ngFor="let panel of fcuPanels" class="fcu-panel-block">
+                <div class="fcu-panel-title"> {{ panel.code }} <span class="fcu-panel-type">[{{ panel.type }}]</span>
+                </div>
+                <table class="fcu-details-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Command</th>
+                            <th>Status</th>
+                            <th>Operation State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of panel.rows">
+                            <td>{{ row.no }}</td>
+                            <td>{{ row.command }}</td>
+                            <td [ngClass]="{'on': row.status === 'On', 'off': row.status === 'Off'}">{{ row.status }}
+                            </td>
+                            <td [ngClass]="{'manual': row.operation === 'Bypass'}"> {{ row.operation }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="fcu-status-legend">
+                <div class="legend-title">Status Legends:</div>
+                <div class="legend-row"> <span class="legend-color on"></span> On State </div>
+                <div class="legend-row"> <span class="legend-color off"></span> Off State </div>
+                <!-- <div class="legend-row"> <span class="legend-color alarm"></span> Alarm State </div> -->
+                <div class="legend-row"> <span class="legend-color manual"></span> Trip State </div>
+            </div>
+        </div>
+    </div> <ng-template pTemplate="footer"> <button pButton label="Close" class="p-button-secondary"
+            (click)="closeInfoDialog()"></button> </ng-template>

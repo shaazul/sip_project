@@ -1,0 +1,180 @@
+<div class="chiller">
+
+    <!-- HEADER -->
+    <div class="chiller-header">
+        <h1>Chiller Plant</h1>
+
+        <!-- <div class="view-buttons">
+            <button class="view-btn" [class.active]="currentView === '3d'" (click)="setView('3d')">
+                3D View
+            </button>
+
+            <button class="view-btn" [class.active]="currentView === 'schematic'" (click)="setView('schematic')">
+                Schematic
+            </button>
+        </div> -->
+    </div>
+
+    <!-- CONTENT -->
+    <div class="chiller-content">
+
+        <!-- LEFT : IMAGE -->
+        <div class="chiller-visual card">
+
+            <!-- VIEW BUTTONS -->
+            <div class="visual-view-buttons">
+                <button class="view-btn" [class.active]="currentView === '3d'" (click)="setView('3d')">
+                    3D View
+                </button>
+
+                <button class="view-btn" [class.active]="currentView === 'schematic'" (click)="setView('schematic')">
+                    Schematic
+                </button>
+            </div>
+
+            <!-- IMAGE -->
+            <img *ngIf="currentView === '3d'" src="assets/icons/chiller-plant.png" class="chiller-image" />
+
+            <img *ngIf="currentView === 'schematic'" src="assets/icons/CP-Sche.png" class="chiller-image" />
+
+            <!-- VIEW BUTTONS -->
+            <!-- <div class="visual-view-buttons">
+                <button class="view-btn" [class.active]="currentView === '3d'" (click)="setView('3d')">
+                    3D View
+                </button>
+
+                <button class="view-btn" [class.active]="currentView === 'schematic'" (click)="setView('schematic')">
+                    Schematic
+                </button>
+            </div> -->
+
+        </div>
+
+        <!-- RIGHT : TABLE -->
+        <div class="chiller-table card">
+
+            <div class="chiller-toolbar">
+                <p-iconfield iconPosition="left">
+                    <p-inputicon>
+                        <i class="pi pi-search"></i>
+                    </p-inputicon>
+                    <input pInputText type="text" placeholder="Search" [(ngModel)]="globalFilter"
+                        (input)="applyChillerFilter()" />
+                </p-iconfield>
+
+                <p-button label="Clear" icon="pi pi-filter-slash" [outlined]="true" (click)="clearChillerFilters()">
+                </p-button>
+            </div>
+
+
+            <p-table #dt2 [value]="chillerData" dataKey="id" [rows]="10" [paginator]="true" [loading]="loading"
+                [globalFilterFields]="['system','description','status','auto']" [tableStyle]="{ width: '100%' }"
+                showGridlines>
+
+                <!-- CAPTION -->
+                <!-- <ng-template #caption>
+                    <div class="table-caption">
+                        <p-iconfield iconPosition="left">
+                            <p-inputicon>
+                                <i class="pi pi-search"></i>
+                            </p-inputicon>
+                            <input pInputText type="text" [(ngModel)]="globalFilter"
+                                (ngModelChange)="dt2.filterGlobal($event,'contains')"
+                                placeholder="Search chiller system" />
+                        </p-iconfield>
+                    </div>
+                </ng-template> -->
+
+                <!-- HEADER -->
+                <ng-template #header>
+                    <tr>
+                        <th>System</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Selector Auto</th>
+                        <th>Alarm</th>
+                    </tr>
+
+                    <tr>
+                        <!-- System (TEXT) -->
+                        <th>
+                            <input pInputText type="text" placeholder="Filter system"
+                                (input)="dt2.filter($any($event.target).value, 'system', 'contains')" class="w-full" />
+                        </th>
+
+                        <!-- Description (TEXT) -->
+                        <th>
+                            <input pInputText type="text" placeholder="Filter description"
+                                (input)="dt2.filter($any($event.target).value, 'description', 'contains')"
+                                class="w-full" />
+                        </th>
+
+                        <!-- Status (DROPDOWN) -->
+                        <th>
+                            <p-dropdown [(ngModel)]="selectedStatus" [options]="statusOptions" optionLabel="label"
+                                optionValue="value" placeholder="Any" [showClear]="true" appendTo="body"
+                                (onChange)="onSelectFilter('status', $event.value)" class="w-full">
+                            </p-dropdown>
+                        </th>
+
+                        <!-- Auto (TEXT or DROPDOWN – your choice) -->
+                        <!-- <th>
+                            <input pInputText type="text" placeholder="On / Off"
+                                (input)="dt2.filter($any($event.target).value, 'auto', 'contains')" class="w-full" />
+                        </th> -->
+
+                        <th>
+                            <p-dropdown [(ngModel)]="selectedAuto" [options]="statusOptions" optionLabel="label"
+                                optionValue="value" placeholder="Any" [showClear]="true" appendTo="body"
+                                (onChange)="onSelectFilter('status', $event.value)" class="w-full">
+                            </p-dropdown>
+                        </th>
+
+                        <!-- Alarm (DROPDOWN) -->
+                        <th>
+                            <p-dropdown [(ngModel)]="selectedAlarm" [options]="alarmOptions" optionLabel="label"
+                                optionValue="value" placeholder="Any" [showClear]="true" appendTo="body"
+                                (onChange)="onSelectFilter('alarm', $event.value)" class="w-full">
+                            </p-dropdown>
+                        </th>
+                    </tr>
+
+
+                </ng-template>
+
+                <!-- BODY -->
+                <ng-template #body let-row>
+                    <tr>
+                        <td>{{ row.system }}</td>
+                        <td>{{ row.description }}</td>
+
+                        <td>
+                            <p-tag [value]="row.status" [severity]="row.status === 'ON' ? 'success' : 'secondary'">
+                            </p-tag>
+                        </td>
+
+                        <td>
+                            <p-tag [value]="row.auto" [severity]="row.auto === 'On' ? 'success' : 'warning'">
+                            </p-tag>
+                        </td>
+
+                        <td class="text-center">
+                            <i class="pi" [ngClass]="{
+                                  'pi-exclamation-triangle text-red-500': row.alarm,
+                                  'pi-check-circle text-green-500': !row.alarm
+                                }">
+                            </i>
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <!-- EMPTY -->
+                <ng-template #emptymessage>
+                    <tr>
+                        <td colspan="5">No chiller data found.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

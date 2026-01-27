@@ -1,0 +1,237 @@
+<div class="floor">
+
+    <div class="floor-header">
+        <h1>Floor Navigation</h1>
+    </div>
+
+    <div class="card floor-card">
+
+        <div class="floor-toolbar">
+            <p-dropdown [options]="levelOptions" placeholder="Level" [(ngModel)]="selectedLevel" [showClear]="true"
+                (onClear)="clearLevel()">
+            </p-dropdown>
+
+            <p-button label="Submit" icon="pi pi-check" severity="success" [disabled]="!selectedLevel"
+                (click)="submitFilter()">
+            </p-button>
+        </div>
+
+        <div class="floor-grid">
+
+            <div class="building-panel">
+                <img src="assets/icons/building.png" class="building-image">
+            </div>
+
+            <div class="content-panel">
+
+                <div class="floor-inner-card">
+
+                    <div class="level-title">
+                        {{ appliedLevel || 'Please select a level' }}
+                    </div>
+
+
+                    <div class="floor-layout">
+
+                        <div class="floor-image">
+                            <img [src]="floorImage" alt="Floor Plan">
+
+                        </div>
+
+                        <ng-template #noData>
+                            <div class="no-accordion-data">
+                                No data available. Please select a level.
+                            </div>
+                        </ng-template>
+
+                        <div class="floor-side">
+
+                            <div class="status-legend">
+                                <div class="legend-title">Status Legends:</div>
+                                <div class="legend-row"><span class="dot on"></span> On State</div>
+                                <div class="legend-row"><span class="dot off"></span> Off State</div>
+                                <div class="legend-row"><span class="dot trip"></span> Trip State</div>
+                            </div>
+
+                            <p-accordion [multiple]="true">
+
+                                <p-accordionTab header="Air Handling Unit (AHU) Summary">
+                                    <ng-container *ngIf="appliedLevel; else noData">
+                                        <div class="ahu-table-panel">
+                                            <table class="ahu-details-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Description</th>
+                                                        <th>AHU-01</th>
+                                                        <th>AHU-02</th>
+                                                        <th>AHU-03</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Start Command</td>
+                                                        <td class="on">On</td>
+                                                        <td class="on">On</td>
+                                                        <td class="on">On</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Run Status</td>
+                                                        <td class="on">On</td>
+                                                        <td class="on">On</td>
+                                                        <td class="on">On</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Trip Status</td>
+                                                        <td class="off">Off</td>
+                                                        <td class="off">Off</td>
+                                                        <td class="off">Off</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Supply Air Temp</td>
+                                                        <td>15.4 °C</td>
+                                                        <td>17.0 °C</td>
+                                                        <td>16.7 °C</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Return Air Temp</td>
+                                                        <td>26.1 °C</td>
+                                                        <td>26.0 °C</td>
+                                                        <td>25.7 °C</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Duct Static Pressure</td>
+                                                        <td>114.0 Pa</td>
+                                                        <td>175.0 Pa</td>
+                                                        <td>92.5 Pa</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>CHWR Flowrate</td>
+                                                        <td>23.7 m³/min</td>
+                                                        <td>73.8 m³/min</td>
+                                                        <td>0.0 m³/min</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Total System Power</td>
+                                                        <td>2.882 kW</td>
+                                                        <td>1.274 kW</td>
+                                                        <td>9.788 kW</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </ng-container>
+                                </p-accordionTab>
+
+                                <p-accordionTab header="Mechanical Ventilation (MV) Summary">
+
+                                    <ng-container *ngIf="appliedLevel; else noData">
+                                        <div *ngFor="let panel of mvPanels" class="summary-block">
+                                            <div class="summary-title">
+                                                {{ panel.code }}
+                                                <span>[{{ panel.type }}]</span>
+                                            </div>
+
+                                            <table class="summary-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Command</th>
+                                                        <th>Status</th>
+                                                        <th>Operation State</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let row of panel.rows">
+                                                        <td>{{ row.no }}</td>
+                                                        <td>{{ row.command }}</td>
+                                                        <td class="on">{{ row.status }}</td>
+                                                        <td>{{ row.operation }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </ng-container>
+
+                                </p-accordionTab>
+
+                                <p-accordionTab header="Variable Air Volume (VAV) Summary">
+                                    <ng-container *ngIf="appliedLevel; else noData">
+                                        <table class="summary-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Description</th>
+                                                    <th>Room Temp</th>
+                                                    <th>Damper</th>
+                                                    <th>Setpoint</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let vav of vavDetailData">
+                                                    <td>{{ vav.id }}</td>
+                                                    <td [ngClass]="{
+                                            'temp-hot': vav.roomTemp >= 26,
+                                            'temp-optimum': vav.roomTemp >= 23 && vav.roomTemp < 26,
+                                            'temp-cool': vav.roomTemp < 23
+                                        }">
+                                                        {{ vav.roomTemp }} °C
+                                                    </td>
+                                                    <td>{{ vav.damper }}%</td>
+                                                    <td>{{ vav.setpoint }} °C</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </ng-container>
+                                </p-accordionTab>
+
+                                <p-accordionTab header="Fan Coil Unit (FCU) Summary">
+
+                                    <ng-container *ngIf="appliedLevel; else noData">
+                                        <div *ngFor="let panel of fcuPanels" class="summary-block">
+
+                                            <div class="summary-title">
+                                                {{ panel.code }}
+                                                <span>[{{ panel.type }}]</span>
+                                            </div>
+
+                                            <table class="summary-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Command</th>
+                                                        <th>Status</th>
+                                                        <th>Operation State</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let row of panel.rows">
+                                                        <td>{{ row.no }}</td>
+                                                        <td>{{ row.command }}</td>
+                                                        <td [ngClass]="row.status === 'On' ? 'on' : 'off'">
+                                                            {{ row.status }}
+                                                        </td>
+                                                        <td class="manual">
+                                                            {{ row.operation }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </ng-container>
+                                </p-accordionTab>
+                            </p-accordion>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

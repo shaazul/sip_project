@@ -1,0 +1,230 @@
+<div class="ahu">
+    <div class="ahu-header">
+        <h1>Air Handling Unit Summary</h1>
+    </div>
+
+    <div class="card">
+
+        <div class="ahu-toolbar">
+            <p-iconfield iconPosition="left">
+                <p-inputicon>
+                    <i class="pi pi-search"></i>
+                </p-inputicon>
+                <input pInputText type="text" placeholder="Search..." [(ngModel)]="globalSearch"
+                    (input)="ahuTable.filterGlobal(globalSearch, 'contains')" class="w-64" />
+            </p-iconfield>
+
+            <p-button label="Clear" icon="pi pi-filter-slash" [outlined]="true" (click)="clear(ahuTable)">
+            </p-button>
+        </div>
+
+        <p-table #ahuTable [value]="ahuData" dataKey="id"
+            styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines" [rows]="10" [paginator]="true"
+            [rowsPerPageOptions]="[10, 25, 50]" [tableStyle]="{ 'min-width': '100%' }"
+            [globalFilterFields]="['level','description','runStatus','commandStatus','controlMode']">
+
+            <!-- Search -->
+            <!-- <ng-template pTemplate="caption">
+                <div class="flex items-center justify-end gap-2">
+
+                    <p-iconfield iconPosition="left">
+                        <p-inputicon>
+                            <i class="pi pi-search"></i>
+                        </p-inputicon>
+                        <input pInputText type="text" placeholder="Search" [(ngModel)]="globalSearch"
+                            (input)="ahuTable.filterGlobal(globalSearch, 'contains')" class="w-48" />
+                    </p-iconfield>
+
+                    <p-button label="Clear" icon="pi pi-filter-slash" [outlined]="true" (click)="clear(ahuTable)">
+                    </p-button>
+                </div>
+            </ng-template> -->
+
+            <!-- Headers -->
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 12%">Level</th>
+                    <th style="width: 32%">Description</th>
+                    <th style="width: 12%">Run Status</th>
+                    <th style="width: 12%">Command Status</th>
+                    <th style="width: 12%">Suply Air Temp</th>
+                    <th style="width: 12%">Control Mode</th>
+                    <th style="width: 8%">Action</th>
+                </tr>
+                <tr>
+                    <th>
+                        <input pInputText type="text" [(ngModel)]="selectedLevel"
+                            (input)="ahuTable.filter(selectedLevel,'level','contains')" placeholder="Type to search" />
+                    </th>
+                    <th>
+                        <input pInputText type="text" [(ngModel)]="selectedDescription"
+                            (input)="ahuTable.filter(selectedDescription,'description','contains')"
+                            placeholder="Type to search" />
+                    </th>
+                    <th>
+                        <p-dropdown [(ngModel)]="selectedRunStatus" [options]="runStatusOptions" optionLabel="label"
+                            optionValue="value" placeholder="Any" [showClear]="true" appendTo="body"
+                            (onChange)="onSelectFilter('runStatus', $event.value)" name="runStatus" styleClass="w-full">
+                        </p-dropdown>
+
+                    </th>
+                    <th>
+                        <p-dropdown [(ngModel)]="selectedCommandStatus" [options]="commandStatusOptions"
+                            optionLabel="label" optionValue="value" placeholder="Any" [showClear]="true" appendTo="body"
+                            (onChange)="onSelectFilter('commandStatus', $event.value)" name="commandStatus"
+                            styleClass="w-full">
+                        </p-dropdown>
+                    </th>
+                    <th>
+                        <input pInputText type="number" #tempInput
+                            (input)="ahuTable.filter(tempInput.value,'supplyAirTemp','contains')" placeholder="Temp" />
+                    </th>
+                    <th>
+                        <p-dropdown [(ngModel)]="selectedControlMode" [options]="controlModeOptions" optionLabel="label"
+                            optionValue="value" placeholder="Any" [showClear]="true" appendTo="body"
+                            (onChange)="onSelectFilter('controlMode', $event.value)" name="controlMode"
+                            styleClass="w-full">
+                        </p-dropdown>
+                    </th>
+                    <th></th>
+                </tr>
+            </ng-template>
+
+            <!-- Data Rows -->
+            <ng-template pTemplate="body" let-row>
+                <tr>
+                    <td>{{ row.level }}</td>
+                    <td>{{ row.description }}</td>
+                    <td>
+                        <p-tag severity="success" value="{{ row.runStatus }}"></p-tag>
+                    </td>
+                    <td>
+                        <p-tag severity="success" value="{{ row.commandStatus }}"></p-tag>
+                    </td>
+                    <td class="font-semibold text-green-600">
+                        {{ row.supplyAirTemp }} °C
+                    </td>
+                    <td>
+                        <p-tag value="{{ row.controlMode }}"></p-tag>
+                    </td>
+                    <td>
+                        <button pButton icon="pi pi-eye" class="p-button-text p-button-sm"
+                            (click)="openInfoDialog(row)">
+                        </button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+<p-dialog [(visible)]="infoVisible" [modal]="true" [draggable]="false" [style]="{ width: '70rem' }" header="AHU Details"
+    [breakpoints]="{ '960px': '95vw' }">
+
+    <div *ngIf="infoAsset" class="ahu-dialog-layout">
+
+        <div class="ahu-image-panel">
+            <img src="assets/icons/ahu.png" alt="AHU" class="ahu-image" />
+            <div class="ahu-image-title">
+                {{ infoAsset.description }}
+            </div>
+        </div>
+
+        <div class="ahu-table-panel">
+
+            <table class="ahu-details-table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>AHU-01</th>
+                        <th>AHU-02</th>
+                        <th>AHU-03</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Start Command</td>
+                        <td class="on">On</td>
+                        <td class="on">On</td>
+                        <td class="on">On</td>
+                    </tr>
+
+                    <tr>
+                        <td>Run Status</td>
+                        <td class="on">On</td>
+                        <td class="on">On</td>
+                        <td class="on">On</td>
+                    </tr>
+
+                    <tr>
+                        <td>Trip Status</td>
+                        <td class="off">Off</td>
+                        <td class="off">Off</td>
+                        <td class="off">Off</td>
+                    </tr>
+
+                    <tr>
+                        <td>Supply Air Temp</td>
+                        <td>15.4 °C</td>
+                        <td>17.0 °C</td>
+                        <td>16.7 °C</td>
+                    </tr>
+
+                    <tr>
+                        <td>Return Air Temp</td>
+                        <td>26.1 °C</td>
+                        <td>26.0 °C</td>
+                        <td>25.7 °C</td>
+                    </tr>
+
+                    <tr>
+                        <td>Duct Static Pressure</td>
+                        <td>114.0 Pa</td>
+                        <td>175.0 Pa</td>
+                        <td>92.5 Pa</td>
+                    </tr>
+
+                    <tr>
+                        <td>CHWR Flowrate</td>
+                        <td>23.7 m³/min</td>
+                        <td>73.8 m³/min</td>
+                        <td>0.0 m³/min</td>
+                    </tr>
+
+                    <tr>
+                        <td>Total System Power</td>
+                        <td>2.882 kW</td>
+                        <td>1.274 kW</td>
+                        <td>9.788 kW</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- AHU STATUS LEGEND -->
+            <div class="ahu-status-legend">
+                <div class="legend-title">Status Legends:</div>
+
+                <div class="legend-row">
+                    <span class="legend-color on"></span>
+                    On State
+                </div>
+
+                <div class="legend-row">
+                    <span class="legend-color off"></span>
+                    Off State
+                </div>
+
+                <div class="legend-row">
+                    <span class="legend-color trip"></span>
+                    Trip State
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <button pButton label="Close" class="p-button-secondary" (click)="closeInfoDialog()"></button>
+    </ng-template>
+
+</p-dialog>

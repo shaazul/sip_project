@@ -1,0 +1,165 @@
+.chiller {
+  padding: 24px;
+}
+
+.chiller-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chiller-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.view-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.visual-view-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  margin-bottom: 21px;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.view-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  cursor: pointer;
+}
+
+.view-btn.active {
+  background: #10b981;
+  border-color: #10b981;
+}
+
+.chiller-content {
+  display: grid;
+  grid-template-columns: 1.4fr 1.6fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.chiller-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chiller-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.chiller-toolbar p-iconfield {
+  margin-left: auto;
+}
+
+.chiller-image {
+  width: 100%;
+  max-width: 700px;
+  display: block;
+  margin-top: 33px;
+  margin-bottom: 35px;
+}
+
+.chiller-table {
+  width: fit-content;
+  max-width: 100%;
+  justify-self: start;
+}
+
+.table-caption {
+  display: flex;
+  justify-content: flex-end;
+  padding: 6px 0;
+}
+
+:host ::ng-deep .p-datatable th,
+:host ::ng-deep .p-datatable td {
+  white-space: nowrap;
+}
+
+
+:host ::ng-deep .p-datatable table {
+  table-layout: auto;
+  width: auto;
+}
+
+:host ::ng-deep .p-datatable td {
+  font-size: 12px;
+  padding: 6px;
+}
+
+@media (max-width: 1600px) {
+
+  .chiller-content {
+    grid-template-columns: 1fr !important;
+  }
+
+  .chiller-visual {
+    grid-column: 1 / -1;
+  }
+
+  .chiller-table {
+    grid-column: 1 / -1;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  *,
+  *::before,
+  *::after {
+    max-width: 100%;
+  }
+
+  .chiller-content {
+    grid-template-columns: 1fr !important;
+  }
+
+  .chiller {
+    overflow-x: hidden;
+  }
+
+  .chiller-table {
+    width: 100% !important;
+    overflow-x: auto;
+  }
+
+  :host ::ng-deep .p-datatable-wrapper {
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .chiller {
+    padding: 12px;
+  }
+
+  .visual-view-buttons {
+    justify-content: center;
+  }
+
+  .chiller-table {
+    overflow-x: auto;
+  }
+}

@@ -1,0 +1,274 @@
+<div class="alarm">
+    <div class="alarm-header">
+        <h1>Alarm Summary</h1>
+    </div>
+
+    <div class="card">
+
+
+        <!-- TOP BAR -->
+        <div class="alarm-topbar">
+
+            <!-- ROW 1 : TITLE ONLY -->
+            <div class="alarm-title-row">
+                <h2>Active Alarm List</h2>
+            </div>
+
+            <!-- ROW 2 : EXPORT (LEFT) + SEARCH (RIGHT) -->
+            <div class="alarm-action-row">
+
+                <!-- LEFT : EXPORT BUTTONS -->
+                <div class="export-group">
+                    <button type="button" class="p-button p-component p-button-sm p-button-outlined"
+                        pTooltip="Download as CSV" tooltipPosition="top" (click)="exportToCSV()">
+                        <i class="pi pi-download mr-2"></i>
+                        <span>CSV</span>
+                    </button>
+
+                    <button type="button" class="p-button p-component p-button-sm p-button-outlined"
+                        pTooltip="Download as Excel" tooltipPosition="top" (click)="exportToExcel()">
+                        <i class="pi pi-download mr-2"></i>
+                        <span>Excel</span>
+                    </button>
+
+                    <button type="button" class="p-button p-component p-button-sm p-button-outlined"
+                        pTooltip="Download as PDF" tooltipPosition="top" (click)="exportToPDF()">
+                        <i class="pi pi-download mr-2"></i>
+                        <span>PDF</span>
+                    </button>
+                </div>
+
+                <!-- RIGHT : SEARCH + CLEAR -->
+                <div class="alarm-toolbar">
+                    <p-iconfield iconPosition="left">
+                        <p-inputicon>
+                            <i class="pi pi-search"></i>
+                        </p-inputicon>
+                        <input pInputText type="text" placeholder="Global search..." [(ngModel)]="globalSearchActive"
+                            (input)="applyActiveFilters()" />
+                    </p-iconfield>
+
+                    <p-button label="Clear" icon="pi pi-filter-slash" [outlined]="true" (click)="clearActiveFilters()">
+                    </p-button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TABLE -->
+        <p-table [value]="filteredActiveAlarms" [paginator]="true" [rows]="10" scrollable="true" scrollHeight="flex"
+            styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines">
+
+            <!-- HEADER -->
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width:12%">Controller</th>
+                    <th style="width:10%">Type</th>
+                    <th style="width:14%">Service</th>
+                    <th style="width:26%">Description</th>
+                    <th style="width:14%">Occurred</th>
+                    <th style="width:8%">Status</th>
+                    <th style="width:12%">Resolved Time</th>
+                    <th style="width:12%">Acknowledged Time</th>
+                    <th style="width:12%">Acknowledged By</th>
+                </tr>
+
+                <!-- FILTER ROW -->
+                <tr class="custom-filter-row">
+                    <th>
+                        <input pInputText type="text" placeholder="Controller" [(ngModel)]="filterControllerActive"
+                            (input)="applyActiveFilters()" />
+                    </th>
+
+                    <th>
+                        <p-dropdown [options]="typeOptions" placeholder="Any" [showClear]="true"
+                            [(ngModel)]="filterTypeActive" (onChange)="applyActiveFilters()" appendTo="body">
+                        </p-dropdown>
+                    </th>
+
+                    <th>
+                        <p-dropdown [options]="serviceOptions" placeholder="Any" [showClear]="true"
+                            [(ngModel)]="filterServiceActive" (onChange)="applyActiveFilters()" appendTo="body">
+                        </p-dropdown>
+                    </th>
+
+                    <th>
+                        <input pInputText type="text" placeholder="Description" [(ngModel)]="filterDescriptionActive"
+                            (input)="applyActiveFilters()" />
+                    </th>
+
+                    <th></th>
+
+                    <th>
+                        <!-- <p-dropdown [options]="statusOptions" placeholder="Any" [showClear]="true"
+                            [(ngModel)]="filterStatus" (onChange)="applyActiveFilters()" appendTo="body">
+                        </p-dropdown> -->
+                    </th>
+
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </ng-template>
+
+            <!-- BODY -->
+            <ng-template pTemplate="body" let-row>
+                <tr>
+                    <td>{{ row.controller }}</td>
+                    <td>{{ row.type }}</td>
+                    <td>{{ row.service }}</td>
+                    <td>{{ row.description }}</td>
+                    <td>{{ row.occurred }}</td>
+
+                    <td>
+                        <span class="status-pill active">
+                            {{ row.status }}
+                        </span>
+                    </td>
+
+                    <td>{{ row.resolvedTime || '-' }}</td>
+                    <td>{{ row.ackTime || '-' }}</td>
+                    <td>{{ row.ackBy || '-' }}</td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+    </div>
+
+    <div class="card">
+        <!-- TOP BAR -->
+        <div class="alarm-topbar">
+
+            <!-- ROW 1 : TITLE ONLY -->
+            <div class="alarm-title-row">
+                <h2>Historical Alarm List</h2>
+            </div>
+
+            <!-- ROW 2 : EXPORT (LEFT) + SEARCH (RIGHT) -->
+            <div class="alarm-action-row">
+
+                <!-- LEFT : EXPORT BUTTONS -->
+                <div class="export-group">
+                    <button type="button" class="p-button p-component p-button-sm p-button-outlined"
+                        pTooltip="Download as CSV" tooltipPosition="top" (click)="exportToCSV(true)">
+                        <i class="pi pi-download mr-2"></i>
+                        <span>CSV</span>
+                    </button>
+
+                    <button type="button" class="p-button p-component p-button-sm p-button-outlined"
+                        pTooltip="Download as Excel" tooltipPosition="top" (click)="exportToExcel(true)">
+                        <i class="pi pi-download mr-2"></i>
+                        <span>Excel</span>
+                    </button>
+
+                    <button type="button" class="p-button p-component p-button-sm p-button-outlined"
+                        pTooltip="Download as PDF" tooltipPosition="top" (click)="exportToPDF(true)">
+                        <i class="pi pi-download mr-2"></i>
+                        <span>PDF</span>
+                    </button>
+                </div>
+
+                <!-- RIGHT : SEARCH + CLEAR -->
+                <div class="alarm-toolbar">
+                    <p-iconfield iconPosition="left">
+                        <p-inputicon>
+                            <i class="pi pi-search"></i>
+                        </p-inputicon>
+                        <input pInputText type="text" placeholder="Global search..." [(ngModel)]="globalSearchHistory"
+                            (input)="applyHistoryFilters()" />
+                    </p-iconfield>
+
+                    <p-button label="Clear" icon="pi pi-filter-slash" [outlined]="true" (click)="clearHistoryFilters()">
+                    </p-button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TABLE -->
+        <p-table [value]="filteredHistoryAlarms" [paginator]="true" [rows]="10" scrollable="true" scrollHeight="flex"
+            styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines">
+
+            <!-- HEADER -->
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width:12%">Controller</th>
+                    <th style="width:10%">Type</th>
+                    <th style="width:14%">Service</th>
+                    <th style="width:26%">Description</th>
+                    <th style="width:14%">Occurred</th>
+                    <th style="width:8%">Status</th>
+                    <th style="width:12%">Resolved Time</th>
+                    <th style="width:12%">Acknowledged Time</th>
+                    <th style="width:12%">Acknowledged By</th>
+                </tr>
+
+                <!-- FILTER ROW -->
+                <tr class="custom-filter-row">
+                    <th>
+                        <input pInputText type="text" placeholder="Controller" [(ngModel)]="filterControllerHistory"
+                            (input)="applyHistoryFilters()" />
+                    </th>
+
+                    <th>
+                        <p-dropdown [options]="typeOptions" placeholder="Any" [showClear]="true"
+                            [(ngModel)]="filterTypeHistory" (onChange)="applyHistoryFilters()" appendTo="body">
+                        </p-dropdown>
+                    </th>
+
+                    <th>
+                        <p-dropdown [options]="serviceOptions" placeholder="Any" [showClear]="true"
+                            [(ngModel)]="filterServiceHistory" (onChange)="applyHistoryFilters()" appendTo="body">
+                        </p-dropdown>
+                    </th>
+
+                    <th>
+                        <input pInputText type="text" placeholder="Description" [(ngModel)]="filterDescriptionHistory"
+                            (input)="applyHistoryFilters()" />
+                    </th>
+
+                    <th></th>
+
+                    <th>
+                        <!-- <p-dropdown [options]="statusOptions" placeholder="Any" [showClear]="true"
+                            [(ngModel)]="filterStatus" (onChange)="applyHistoryFilters()" appendTo="body">
+                        </p-dropdown> -->
+                    </th>
+
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </ng-template>
+
+            <!-- BODY -->
+            <ng-template pTemplate="body" let-row>
+                <tr>
+                    <td>{{ row.controller }}</td>
+                    <td>{{ row.type }}</td>
+                    <td>{{ row.service }}</td>
+                    <td>{{ row.description }}</td>
+                    <td>{{ row.occurred }}</td>
+
+                    <td>
+                        <span class="status-pill historical">
+                            {{ row.status }}
+                        </span>
+                    </td>
+
+                    <td>{{ row.resolvedTime || '-' }}</td>
+                    <td>{{ row.ackTime || '-' }}</td>
+                    <td>{{ row.ackBy || '-' }}</td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+    </div>
+
+</div>

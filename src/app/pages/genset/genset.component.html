@@ -1,0 +1,87 @@
+<div class="genset">
+
+    <!-- HEADER -->
+    <div class="genset-header">
+        <h1>Generator Set</h1>
+    </div>
+
+    <div class="genset-dropdown">
+        <p-dropdown [options]="levels" [(ngModel)]="selectedLevel" optionLabel="label" placeholder="Level 1"
+            styleClass="level-dropdown" (onChange)="onLevelChange()">>
+        </p-dropdown>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="genset-content">
+
+        <div class="card table-card">
+
+            <!-- TOOLBAR (outside table, inside card) -->
+            <div class="flex items-center justify-end gap-2 mb-3">
+                <p-iconfield iconPosition="left">
+                    <p-inputicon>
+                        <i class="pi pi-search"></i>
+                    </p-inputicon>
+                    <input pInputText type="text" placeholder="Search" [(ngModel)]="globalSearch"
+                        (input)="gensetTable.filterGlobal(globalSearch, 'contains')" class="w-48" />
+                </p-iconfield>
+
+                <p-button label="Clear" icon="pi pi-filter-slash" [outlined]="true" (click)="clear(gensetTable)">
+                </p-button>
+            </div>
+
+            <!-- TABLE -->
+            <p-table #gensetTable [value]="gensetData" dataKey="parameter"
+                styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines" [rows]="10" [paginator]="true"
+                [rowsPerPageOptions]="[10, 25, 50]" [tableStyle]="{ 'min-width': '100%' }"
+                [globalFilterFields]="['parameter', 'v1', 'v2']">
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 40%">Parameter</th>
+                        <th>01</th>
+                        <th>02</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-row>
+                    <tr>
+                        <td>{{ row.parameter }}</td>
+                        <td>{{ row.v1 }}</td>
+                        <td>{{ row.v2 }}</td>
+                    </tr>
+                </ng-template>
+
+            </p-table>
+        </div>
+
+
+        <!-- RIGHT : DIESEL CARD -->
+        <div class="card diesel-card">
+
+            <h3 class="diesel-title">Diesel Tank</h3>
+
+            <div class="diesel-gauge">
+                <img src="assets/icons/meter.png" alt="Diesel Gauge" />
+            </div>
+
+            <div class="diesel-info-inputs">
+
+                <div class="diesel-field">
+                    <label class="diesel-label">Current:</label>
+                    <input pInputText [value]="diesel.current + ' ft'" disabled class="w-full" />
+                </div>
+
+                <div class="diesel-field">
+                    <label class="diesel-label">Full:</label>
+                    <input pInputText [value]="diesel.full + ' ft'" disabled class="w-full" />
+                </div>
+
+                <div class="diesel-field">
+                    <label class="diesel-label">Threshold:</label>
+                    <input pInputText [value]="diesel.threshold + ' ft'" disabled class="w-full" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

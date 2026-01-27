@@ -1,0 +1,130 @@
+<div class="vav">
+    <div class="vav-header">
+        <h1>Variable Air Volume Summary</h1>
+    </div>
+
+    <div class="card">
+
+        <!-- TOOLBAR -->
+        <div class="vav-toolbar flex items-center justify-end gap-2 mb-3">
+            <p-iconfield iconPosition="left">
+                <p-inputicon>
+                    <i class="pi pi-search"></i>
+                </p-inputicon>
+
+                <input pInputText type="text" class="w-48" placeholder="Search" [(ngModel)]="globalSearch"
+                    (input)="applyFilters()" />
+            </p-iconfield>
+
+            <p-button label="Clear" icon="pi pi-filter-slash" [outlined]="true" (click)="clear()">
+            </p-button>
+        </div>
+
+        <!-- TABLE -->
+        <p-table [value]="vavData" dataKey="level" styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines"
+            [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10, 25, 50]" [tableStyle]="{ 'min-width': '100%' }">
+
+            <!-- HEADER -->
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 12%">Level</th>
+                    <th>Room Temperature</th>
+                    <th style="width: 8%">Action</th>
+                </tr>
+
+                <!-- FILTER ROW -->
+                <tr>
+                    <th>
+                        <input pInputText [(ngModel)]="selectedLevel" (input)="applyFilters()"
+                            placeholder="Type to search" />
+                    </th>
+
+                    <th>
+                        <div class="flex gap-2">
+                            <input pInputText [(ngModel)]="selectedRoomId" (input)="applyFilters()"
+                                placeholder="Room ID" class="w-6rem" />
+
+                            <input pInputText type="number" [(ngModel)]="selectedTemp" (input)="applyFilters()"
+                                placeholder="Temp" class="w-6rem" />
+                        </div>
+                    </th>
+
+                    <th></th>
+                </tr>
+            </ng-template>
+
+            <!-- BODY -->
+            <ng-template pTemplate="body" let-row>
+                <tr>
+                    <td>{{ row.level }}</td>
+
+                    <td>
+                        <div class="temp-grid">
+                            <div *ngFor="let room of row.rooms" class="temp-box" [ngClass]="getTempClass(room.temp)">
+                                <div class="temp-id">{{ room.id }}</div>
+                                <div class="temp-value">{{ room.temp }} °C</div>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <button pButton icon="pi pi-eye" class="p-button-text p-button-sm"
+                            (click)="openVavInfoDialog(row)">
+                        </button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+<!-- VAV DETAILS DIALOG -->
+<p-dialog [(visible)]="vavVisible" [modal]="true" [draggable]="false" header="VAV Details" [style]="{ width: '70rem' }"
+    [breakpoints]="{ '960px': '95vw' }">
+
+    <div class="vav-dialog-layout">
+        <div class="vav-image-panel">
+            <img src="assets/icons/vav.png" alt="VAV" class="vav-image" />
+            <div class="vav-image-title">VAV Zone Status</div>
+        </div>
+
+        <div class="vav-table-panel">
+            <table class="vav-details-table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Room Temperature</th>
+                        <th>Damper Position</th>
+                        <th>Setpoint</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let vav of vavDetailData">
+                        <td>{{ vav.id }}</td>
+                        <td [ngClass]="{
+                'temp-hot': vav.roomTemp >= 26,
+                'temp-optimum': vav.roomTemp >= 23 && vav.roomTemp < 26,
+                'temp-cool': vav.roomTemp < 23
+              }">
+                            {{ vav.roomTemp }} °C
+                        </td>
+                        <td>{{ vav.damper }} %</td>
+                        <td>{{ vav.setpoint }} °C</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- LEGEND -->
+            <div class="vav-legend">
+                <div><span class="legend-box optimum"></span> Optimum Comfort (23°C – 26°C)</div>
+                <div><span class="legend-box warm"></span> Warm (&gt; 26°C)</div>
+                <div><span class="legend-box cool"></span> Cool (&lt; 23°C)</div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <button pButton label="Close" class="p-button-secondary" (click)="closeVavInfoDialog()">
+        </button>
+    </ng-template>
+</p-dialog>

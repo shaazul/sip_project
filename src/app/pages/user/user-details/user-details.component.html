@@ -1,0 +1,215 @@
+<div>
+    <div class="flex flex-wrap">
+        <div class="flex flex-col items-center justify-center gap-5 w-full sm:w-full md:w-full lg:w-1/2 p-2">
+            <div style="position: relative">
+                <!-- Profile Image Display -->
+                <img [src]="previewUrl || 'assets/user/user-2.jpg'" alt="profile" class="w-40 h-40 sm:w-30 sm:h-30 rounded-full cursor-pointer" (click)="onUpload()" />
+
+                <!-- Hidden File Input -->
+                <input type="file" #fileInput accept="image/*" style="display: none" (change)="handleFileInput($event)" />
+
+                <!-- Hidden file input -->
+                <input type="file" #fileInput accept="image/*" style="display: none" (change)="handleFileInput($event)" />
+
+                <div
+                    (click)="onUpload()"
+                    style="cursor: pointer; position: absolute; top: 10px; left: 5px; width: 30px; height: 30px; border-radius: 50%; border: 1px solid #dadada; background: var(--surface-card)"
+                    class="flex items-center justify-center"
+                >
+                    <i class="pi pi-pencil" style="font-size: 10px"></i>
+                </div>
+                <div style="position: absolute; bottom: 10px; right: 10px; width: 20px; height: 20px; border-radius: 50%; background-color: red"></div>
+            </div>
+            <div *ngIf="showPreview" class="flex justify-center gap-4">
+                <p-button label="Cancel" severity="danger" [style]="{ width: '100%' }" size="small" outlined="true" (click)="cancelUpload()" />
+                <p-button label="Save" severity="success" [style]="{ width: '100%' }" size="small" outlined="true" (click)="saveUpload()" />
+            </div>
+        </div>
+        <div class="flex flex-col justify-center gap-5 w-full sm:w-full md:w-full lg:w-1/2 p-2">
+            <span class="username-text">{{ userDetails.name }}</span>
+            <span class="sub-username-text">{{ userDetails.fullname || userDetails.name }}</span>
+            <span class="sub-username-text">{{ userDetails.position || 'Software Engineer' }}</span>
+        </div>
+    </div>
+    <div class="flex flex-wrap w-full mt-5">
+        <!-- Save -->
+        <!-- <div class="w-full sm:w-full md:w-1/2 lg:w-1/4 p-1" *ngIf="isEdit">
+            <p-button label="Save" severity="success" [style]="{ width: '100%' }" size="small" outlined="true" (click)="isEdit = !isEdit" />
+        </div> -->
+
+        <!-- Edit -->
+        <!-- <div class="w-full sm:w-full md:w-1/2 lg:w-1/4 p-1" *ngIf="!isEdit">
+            <p-button label="Edit" class="w-full sm:w-full md:w-1/2 lg:w-1/3" [style]="{ width: '100%' }" size="small" severity="primary" outlined="true" (click)="isEdit = !isEdit" />
+        </div> -->
+
+        <!-- Share -->
+        <div class="w-full sm:w-full md:w-1/2 lg:w-1/4 p-1">
+            <p-button label="Share" class="w-full sm:w-full md:w-1/2 lg:w-1/3" [style]="{ width: '100%' }" size="small" severity="primary" outlined="true" />
+        </div>
+
+        <!-- Locate -->
+        <div class="w-full sm:w-full md:w-1/2 lg:w-1/4 p-1">
+            <p-button label="Locate" class="w-full sm:w-full md:w-1/2 lg:w-1/3" [style]="{ width: '100%' }" size="small" severity="primary" outlined="true" />
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <!-- [style]="layoutService.isMobile() ? '' : 'border-bottom: 1px solid #dadada; '" -->
+    <div class="flex flex-wrap w-full" style="margin-top: 20px">
+        <div [class]="isActive === 'ACCOUNT' ? 'button-active' : 'button-group'" class="w-full sm:w-full md:w-full lg:w-1/4" (click)="isActive = 'ACCOUNT'" [style]="{ 'border-bottom': '1px solid #dadada', textAlign: 'center' }">ACCOUNT</div>
+        <div [class]="isActive === 'ORGANIZATION' ? 'button-active' : 'button-group'" class="w-full sm:w-full md:w-full lg:w-1/4" (click)="isActive = 'ORGANIZATION'" [style]="{ 'border-bottom': '1px solid #dadada', textAlign: 'center' }">
+            ORGANIZATION
+        </div>
+        <div [class]="isActive === 'JOB DESCRIPTION' ? 'button-active' : 'button-group'" class="w-full sm:w-full md:w-full lg:w-1/4" (click)="isActive = 'JOB DESCRIPTION'" [style]="{ 'border-bottom': '1px solid #dadada', textAlign: 'center' }">
+            JOB DESCRIPTION
+        </div>
+        <div [class]="isActive === 'SCHEDULE' ? 'button-active' : 'button-group'" class="w-full sm:w-full md:w-full lg:w-1/4" (click)="isActive = 'SCHEDULE'" [style]="{ 'border-bottom': '1px solid #dadada', textAlign: 'center' }">SCHEDULE</div>
+    </div>
+
+    <!-- Content -->
+    <div class="p-3 mt-5">
+        @if (isActive === 'ACCOUNT') {
+            <div class="flex flex-col gap-5">
+                <div class="flex flex-col gap-2 p-1">
+                    <label for="username">Username</label>
+                    @if (isEdit) {
+                        <input pInputText id="fullname" [(ngModel)]="userDetails.fullname" />
+                    } @else if (isChangeUsername) {
+                        <input pInputText id="fullname" [(ngModel)]="userDetails.fullname" />
+                        <div class="flex flex-wrap">
+                            <div *ngIf="isChangeUsername" class="ml-2 text-sm text-green-500 font-semibold" style="cursor: pointer" (click)="isChangeUsername = !isChangeUsername">Save</div>
+                            <div *ngIf="isChangeUsername" class="ml-2 text-sm text-red-500 font-semibold" style="cursor: pointer" (click)="isChangeUsername = !isChangeUsername">Cancel</div>
+                        </div>
+                    } @else {
+                        <div class="flex flex-wrap">
+                            <span>{{ userDetails.username }} </span>
+                            <div *ngIf="!isChangeUsername" class="ml-2 text-sm text-muted-color font-semibold" style="cursor: pointer" (click)="isChangeUsername = !isChangeUsername">Change</div>
+                        </div>
+                    }
+                </div>
+                <div class="flex flex-col gap-2 p-1">
+                    <label for="username">Password</label>
+                    @if (isEdit) {
+                        <div class="flex w-full">
+                            <p-password [(ngModel)]="userDetails.password" [toggleMask]="true" [style]="{ width: '100%' }" />
+                        </div>
+                        <!-- <p-password [(ngModel)]="userDetails.password" [toggleMask]="true" [style]="{width: '100%'}" /> -->
+                    } @else if (isChangePassword) {
+                        <div class="flex w-full">
+                            <p-password [(ngModel)]="userDetails.password" [toggleMask]="true" [style]="{ width: '100%' }" />
+                        </div>
+                        <div class="flex flex-wrap">
+                            <div *ngIf="isChangePassword" class="ml-2 text-sm text-green-500 font-semibold" style="cursor: pointer" (click)="isChangePassword = !isChangePassword">Save</div>
+                            <div *ngIf="isChangePassword" class="ml-2 text-sm text-red-500 font-semibold" style="cursor: pointer" (click)="isChangePassword = !isChangePassword">Cancel</div>
+                        </div>
+                    } @else {
+                        <div class="flex flex-wrap">
+                            <span>{{ userDetails.password }}</span>
+                            <div *ngIf="!isChangePassword" class="ml-2 text-sm text-muted-color font-semibold" style="cursor: pointer" (click)="isChangePassword = !isChangePassword">Change</div>
+                        </div>
+                    }
+                </div>
+                <div class="flex flex-col gap-2 p-1">
+                    <label for="username">Full Name</label>
+                    @if (isEdit) {
+                        <input pInputText id="fullname" [(ngModel)]="userDetails.fullname" />
+                    } @else {
+                        <span>{{ userDetails.fullname || 'no data' }}</span>
+                    }
+                </div>
+                <div class="flex flex-col gap-2 p-1">
+                    <label for="username">Employee ID</label>
+                    @if (isEdit) {
+                        <input pInputText id="employeeId" [(ngModel)]="userDetails.employeeId" />
+                    } @else {
+                        <span>{{ userDetails.employeeId || 'no data' }}</span>
+                    }
+                </div>
+                <div class="flex flex-col gap-2 p-1">
+                    <label for="username">Email</label>
+                    @if (isEdit) {
+                        <input pInputText id="email" [(ngModel)]="userDetails.email" />
+                    } @else {
+                        <span>{{ userDetails.email || 'no data' }}</span>
+                    }
+                </div>
+                <div class="flex flex-wrap">
+                    <div class="flex flex-col gap-2 w-1/2 p-1">
+                        <label for="username">Position</label>
+                        @if (isEdit) {
+                            <input pInputText id="position" [(ngModel)]="userDetails.position" />
+                        } @else {
+                            <span>{{ userDetails.position || 'no data' }}</span>
+                        }
+                    </div>
+                    <div class="flex flex-col gap-2 w-1/2 p-1">
+                        <label for="username">Department</label>
+                        @if (isEdit) {
+                            <input pInputText id="department" [(ngModel)]="userDetails.department" />
+                        } @else {
+                            <span>{{ userDetails.department || 'no data' }}</span>
+                        }
+                    </div>
+                </div>
+                <div class="flex flex-wrap">
+                    <div class="flex flex-col gap-2 w-1/2 p-1">
+                        <label for="username">Unit</label>
+                        @if (isEdit) {
+                            <input pInputText id="unit" [(ngModel)]="userDetails.unit" />
+                        } @else {
+                            <span>{{ userDetails.unit || 'no data' }}</span>
+                        }
+                    </div>
+                    <div class="flex flex-col gap-2 w-1/2 p-1">
+                        <label for="username">Contact</label>
+                        @if (isEdit) {
+                            <input pInputText id="contact" [(ngModel)]="userDetails.contact" />
+                        } @else {
+                            <span>{{ userDetails.contact || 'no data' }}</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        } @else if (isActive === 'ORGANIZATION') {
+            <div>
+                <img src="assets/department/organization.png" alt="Organization Chart" />
+            </div>
+        } @else if (isActive === 'JOB DESCRIPTION') {
+            <div>
+                <section class="mb-6">
+                    <h2 class="text-xl font-semibold mb-2">Job Summary</h2>
+                    <p>
+                        A passionate and detail-oriented Software Engineer with strong expertise in
+                        <strong>HTML, Angular, and front-end development</strong>. The ideal candidate will be responsible for building scalable, responsive, and user-friendly web applications while collaborating closely with designers, backend
+                        developers, and other stakeholders.
+                    </p>
+                </section>
+
+                <section class="mb-6">
+                    <h2 class="text-xl font-semibold mb-2">Key Responsibilities</h2>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>Develop, maintain, and enhance web applications using Angular and HTML/CSS/JavaScript.</li>
+                        <li>Collaborate with cross-functional teams to design clean, efficient, and user-friendly interfaces.</li>
+                        <li>Implement responsive designs and ensure cross-browser compatibility.</li>
+                        <li>Optimize application performance for maximum speed and scalability.</li>
+                        <li>Write clean, maintainable, and testable code following best practices.</li>
+                        <li>Debug and resolve technical issues promptly.</li>
+                        <li>Participate in code reviews and contribute to improving development processes.</li>
+                        <li>Stay updated with the latest trends, frameworks, and technologies in front-end development.</li>
+                    </ul>
+                </section>
+            </div>
+        } @else {
+            <div class="space-y-4">
+                <div *ngFor="let day of workSchedule" class="flex items-center justify-between p-4 border rounded-lg">
+                    <div class="font-semibold text-lg w-1/4">{{ day.day }}</div>
+                    <div class="w-1/2">
+                        <p *ngIf="day.start !== '-'">{{ day.start }} - {{ day.end }}</p>
+                        <p *ngIf="day.start === '-'">Off</p>
+                        <small class="text-gray-500">{{ day.notes }}</small>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

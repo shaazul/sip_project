@@ -1,0 +1,182 @@
+@use '../table.scss' as *;
+
+.invalid {
+  border: 1px solid red !important;
+}
+
+.msg-helper {
+  display: flex;
+  position: relative;
+  margin-top: 4px;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 4px;
+  min-height: 18px;
+}
+
+.msg-error {
+  color: red;
+  font-size: 12px;
+  display: inline-block;
+}
+
+.msg-count {
+  font-size: 12px;
+  opacity: 0.7;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.p-button-sm.p-button-primary {
+  min-width: 80px;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeInOverlay 0.25s forwards;
+}
+
+@keyframes fadeInOverlay {
+  to {
+    opacity: 1;
+  }
+}
+
+.overlay .card {
+  width: 480px;
+  max-width: 90%;
+  padding: 2rem;
+  border-radius: 16px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.overlay-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.overlay-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.close-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem 1rem;
+  margin-top: 0.3rem;
+  align-items: center;
+  justify-items: start;
+  width: 100%;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .day-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.submit-btn,
+.cancel-btn {
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  transition: background 0.2s;
+}
+
+
+:host ::ng-deep .p-confirm-dialog-mask {
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Default (desktop) */
+.custom-table {
+  font-size: 14px;
+}
+
+/* Tablet (max width: 1024px) */
+@media (max-width: 1024px) {
+  .custom-table {
+    font-size: 13px;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 0.5rem;
+  }
+}
+
+/* Mobile (max width: 600px) */
+@media (max-width: 600px) {
+  .custom-table {
+    font-size: 12px;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 0.3rem;
+  }
+}

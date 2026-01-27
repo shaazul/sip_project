@@ -1,0 +1,124 @@
+<div class="pdb">
+
+    <div class="pdb-header">
+        <h1>Power Distribution Board</h1>
+    </div>
+
+    <div class="card">
+
+        <!-- TOOLBAR (search outside table but inside card) -->
+        <div class="pdb-toolbar">
+            <div class="pdb-toolbar-right">
+
+                <p-iconfield iconPosition="left">
+                    <p-inputicon>
+                        <i class="pi pi-search"></i>
+                    </p-inputicon>
+                    <input pInputText type="text" [(ngModel)]="globalSearch"
+                        (input)="pdbTable.filterGlobal($any($event.target).value, 'contains')"
+                        placeholder="Search" />
+                </p-iconfield>
+
+                <p-button label="Clear" icon="pi pi-filter-slash" [outlined]="true" (click)="clear(pdbTable)">
+                </p-button>
+
+            </div>
+        </div>
+
+        <p-table #pdbTable [value]="pdbData" dataKey="pdbId"
+            styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines" [rows]="10" [paginator]="true"
+            [rowsPerPageOptions]="[10, 25, 50]" [tableStyle]="{ 'min-width': '100%' }" [globalFilterFields]="[
+        'pdbId',
+        'location',
+        'voltage',
+        'current',
+        'power',
+        'energy',
+        'freq',
+        'breaker',
+        'remarks'
+      ]">
+
+            <!-- SEARCH -->
+            <!-- <ng-template pTemplate="caption">
+                <div class="flex items-center justify-end gap-2">
+
+                    <p-iconfield iconPosition="left">
+                        <p-inputicon>
+                            <i class="pi pi-search"></i>
+                        </p-inputicon>
+                        <input pInputText type="text" [(ngModel)]="globalSearch"
+                            (input)="pdbTable.filterGlobal($any($event.target).value, 'contains')"
+                            placeholder="Search..." />
+                    </p-iconfield>
+
+                    <p-button label="Clear" icon="pi pi-filter-slash" [outlined]="true" (click)="clear(pdbTable)">
+                    </p-button>
+                </div>
+            </ng-template> -->
+
+            <!-- HEADER -->
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>PDB ID</th>
+                    <th>Location</th>
+                    <th>Voltage In/Out (V)</th>
+                    <th>Current (A)</th>
+                    <th>Power (kW)</th>
+                    <th>Energy (kWh)</th>
+                    <th>Freq (Hz)</th>
+                    <th>Breaker</th>
+                    <th>Remarks</th>
+                    <th style="width: 100px; text-align: center;">Action</th>
+                </tr>
+            </ng-template>
+
+            <!-- BODY -->
+            <ng-template pTemplate="body" let-row>
+                <tr>
+                    <td>{{ row.pdbId }}</td>
+                    <td>{{ row.location }}</td>
+                    <td>{{ row.voltage }}</td>
+                    <td>{{ row.current }}</td>
+                    <td>{{ row.power }}</td>
+                    <td>{{ row.energy }}</td>
+                    <td>{{ row.freq }}</td>
+                    <td>
+                        <span [class.text-green-500]="row.breaker === 'ON'"
+                            [class.text-red-500]="row.breaker === 'OFF'">
+                            {{ row.breaker }}
+                        </span>
+                    </td>
+                    <td>{{ row.remarks }}</td>
+                    <td>
+                        <button pButton icon="pi pi-eye" class="p-button-text p-button-sm"
+                            (click)="viewChart(row)">
+                        </button>
+                    </td>
+                    <!-- <td class="text-center">
+                        <p-button icon="pi pi-eye" class="p-button-text p-button-sm" (click)="viewChart(row)">
+                        </p-button>
+                    </td> -->
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <p-dialog header="PDB Power & Energy Trend" [(visible)]="displayChart" [modal]="true" [style]="{ width: '60vw' }"
+        [draggable]="false">
+
+        <div class="mb-3">
+            <strong>PDB ID:</strong> {{ selectedPdb?.pdbId }} <br />
+            <strong>Location:</strong> {{ selectedPdb?.location }}
+        </div>
+
+        <p-chart type="line" [data]="data" [options]="options" class="h-[30rem]"></p-chart>
+
+            <ng-template pTemplate="footer">
+        <button pButton label="Close" class="p-button-secondary" (click)="closePdbDialog()">
+        </button>
+    </ng-template>
+
+    </p-dialog>
+
+</div>

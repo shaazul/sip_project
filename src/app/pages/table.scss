@@ -1,0 +1,161 @@
+/*table*/
+:host ::ng-deep .p-paginator {
+    background: transparent;
+    border: 0px;
+    //   border-top: 1px solid #27272a;
+    border-radius: 0 0 12px 12px;
+    padding: 0px;
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+
+    .p-paginator-current {
+        color: #a1a1aa;
+        font-size: 1rem;
+        margin: 0;
+        padding-left: 0.25rem;
+        min-width: 180px;
+    }
+
+    .p-paginator-left-content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .p-paginator-right-content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.5rem;
+    }
+
+    .p-dropdown {
+        background: var(--secondary-color);
+        color: var(--secondary-color) !important;
+        border-radius: 8px;
+        border: none;
+        min-width: 80px;
+        font-size: 1rem;
+        .p-dropdown-label {
+            color: var(--secondary-color);
+        }
+    }
+
+    .p-paginator-pages {
+        display: flex;
+        gap: 0.25rem;
+        margin: 0 0.5rem;
+        .p-paginator-page {
+            background: transparent;
+            color: var(--secondary-color) !important;
+            border: none;
+            border-radius: 8px;
+            min-width: 2.2rem;
+            height: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            font-size: 1rem;
+            transition:
+                background 0.2s,
+                color 0.2s,
+                box-shadow 0.2s;
+            &:hover,
+            &:focus {
+                background: var(--secondary-color);
+                color: var(--secondary-color);
+                box-shadow: 0 0 0 2px #27272a;
+            }
+        }
+        .p-paginator-page.p-highlight {
+            background: var(--secondary-color);
+            color: var(--secondary-color) !important;
+            border-radius: 8px;
+            font-weight: 700;
+            box-shadow: 0 0 0 2px #52525b;
+        }
+    }
+
+    .p-paginator-first,
+    .p-paginator-prev,
+    .p-paginator-next,
+    .p-paginator-last {
+        background: transparent;
+        border: 1px solid var(--primary-color) !important;
+        color: var(--secondary-color) !important;
+        border-radius: 8px;
+        min-width: 2.2rem;
+        height: 2.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        transition:
+            background 0.2s,
+            color 0.2s;
+        margin: 0 0.1rem;
+        &:hover,
+        &:focus {
+            background: var(--secondary-color);
+            color: var(--secondary-color) !important;
+        }
+        &.p-disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+    }
+}
+
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0px;
+    }
+
+:host ::ng-deep .p-datatable-tbody > tr {
+    background-color: transparent; /* no !important here */
+}
+
+:host ::ng-deep .p-datatable-tbody > tr:hover {
+    background-color: var(--p-datatable-header-cell-background) !important; /* or any hover color you prefer */
+}
+
+:host ::ng-deep .p-paginator {
+    justify-content: flex-end !important;
+}
+
+:host ::ng-deep .p-datatable-table-container {
+    border-radius: var(--content-border-radius);
+    border: 1px solid var(--surface-border) !important;
+}
+
+:host ::ng-deep .p-paginator-page.p-paginator-page-selected {
+    color: var(--secondary-color) !important;
+    // background-color: var(--secondary-color) !important;
+}
+
+ @media screen and (max-width: 64em) {
+        :host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+            top: 0px;
+        }
+    }
+
+    /* In styles.scss */
+.p-column-title {
+  display: none;
+}
+
+@media screen and (max-width: 960px) {
+  .p-column-title {
+    display: inline-block;
+    font-weight: bold;
+    // margin-right: 0.5rem;
+  }
+}

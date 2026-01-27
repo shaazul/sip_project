@@ -1,0 +1,136 @@
+.catalogue-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.catalogue-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.catalogue-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.card {
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    text-align: left;
+}
+
+.package-title {
+    color: #007958;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.package-subtitle {
+    color: #007958;
+    text-align: center;
+}
+
+.package-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.package-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.package-list img {
+    width: 18px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.help-card {
+    text-align: center;
+}
+
+.help-text {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 12px;
+}
+
+/* Note */
+.catalogue-note {
+    margin-top: 40px;
+    font-size: 13px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+:host ::ng-deep .custom-preview-btn {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 28px;
+    background-color: #007958;
+    border-color: #007958;
+}
+
+:host ::ng-deep .custom-preview-btn:hover {
+    background-color: #00664b;
+    border-color: #00664b;
+}
+
+:host ::ng-deep .custom-preview-btn:active {
+    background-color: #005a42;
+    border-color: #005a42;
+}
+
+
+
+@media (max-width: 1024px) {
+    .catalogue-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .package-title,
+    .package-subtitle {
+        text-align: center;
+    }
+
+    .catalogue-container {
+        padding: 40px 16px;
+    }
+
+    .catalogue-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .package-list li {
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    .package-subtitle {
+        margin-top: 20px;
+    }
+
+    :host ::ng-deep .custom-preview-btn {
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

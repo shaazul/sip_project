@@ -1,0 +1,135 @@
+.mv {
+    padding: 24px;
+}
+
+.mv-header {
+    margin-bottom: 16px;
+
+    h1 {
+        font-size: 24px;
+        font-weight: 700;
+    }
+}
+
+.mv-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.mv-panel-block {
+    margin-bottom: 1.5rem;
+}
+
+.mv-panel-title {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.mv-panel-type {
+    margin-left: 0.25rem;
+}
+
+.start {
+    background: #9ca3af;
+    font-weight: 600;
+}
+
+.mv-dialog-layout {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.mv-image-panel {
+    text-align: center;
+}
+
+.mv-image {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    object-fit: contain;
+}
+
+.mv-image-title {
+    margin-top: 0.75rem;
+    font-weight: 600;
+}
+
+.mv-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #e5e7eb;
+}
+
+.mv-details-table th {
+    padding: 0.6rem;
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid #e5e7eb;
+    background: #2c3e50;
+    color: #fff;
+}
+
+.mv-details-table td {
+    padding: 0.55rem;
+    border: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.mv-details-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+}
+
+.on {
+    background: #22c55e;
+    font-weight: 600;
+}
+
+.off {
+    background: #9ca3af;
+    font-weight: 600;
+}
+
+.mv-table-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mv-panel-block {
+  margin-bottom: 0.5rem;
+}
+
+.mv-status-legend {
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  max-width: 420px;
+}
+
+.legend-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+}
+
+.legend-color.on { background: #22c55e; }
+.legend-color.off { background: #3b82f6; }
+.legend-color.alarm { background: #ef4444; }
+.legend-color.manual { background: #9ca3af; }

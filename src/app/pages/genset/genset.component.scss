@@ -1,0 +1,116 @@
+.genset {
+    padding: 24px;
+}
+
+.genset-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    h1 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+}
+
+.table-card {
+  align-self: start;
+}
+
+.genset-dropdown {
+    margin-bottom: 1.5rem;
+}
+
+.level-dropdown {
+    width: 200px;
+}
+
+.genset-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.table-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.75rem;
+}
+
+.diesel-card {
+    text-align: center;
+}
+
+.diesel-title {
+    font-size: 20px;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.diesel-gauge {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+}
+
+.diesel-gauge img {
+    width: 300px;
+    max-width: 100%;
+    margin-bottom: 2rem;
+}
+
+.diesel-info-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.diesel-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.diesel-label {
+    color: var(--text-color-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.p-inputtext:disabled {
+    font-weight: 500;
+    opacity: 1;
+    cursor: default;
+}
+
+.meter-wrapper {
+    position: relative;
+    width: 220px;
+    margin: 0 auto;
+}
+
+.meter-wrapper img {
+    width: 100%;
+    margin-bottom: 2rem
+}
+
+.meter-value {
+    position: absolute;
+    bottom: 22%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #16a34a;
+}
+
+@media (max-width: 1024px) {
+    .genset-content {
+        grid-template-columns: 1fr;
+    }
+
+    .diesel-info {
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: center;
+    }
+}

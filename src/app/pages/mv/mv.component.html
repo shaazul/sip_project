@@ -1,0 +1,163 @@
+<div class="mv">
+    <div class="mv-header">
+        <h1>Mechanical Ventilation Summary</h1>
+    </div>
+
+    <div class="card">
+
+        <!-- TOOLBAR -->
+        <div class="mv-toolbar">
+            <p-iconfield iconPosition="left">
+                <p-inputicon>
+                    <i class="pi pi-search"></i>
+                </p-inputicon>
+                <input pInputText type="text" placeholder="Search..." [(ngModel)]="globalSearch"
+                    (input)="mvTable.filterGlobal(globalSearch, 'contains')" />
+            </p-iconfield>
+
+            <p-button label="Clear" icon="pi pi-filter-slash" [outlined]="true" (click)="clear(mvTable)">
+            </p-button>
+        </div>
+
+        <!-- TABLE -->
+        <p-table #mvTable [value]="mvData" dataKey="id"
+            styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines" [rows]="10" [paginator]="true"
+            [rowsPerPageOptions]="[10,25,50]" scrollable="true" scrollHeight="flex"
+            [globalFilterFields]="['level','description','runStatus','controlMode']">
+
+            <!-- HEADER -->
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width:25%">Level</th>
+                    <th style="width:25%">Description</th>
+                    <th style="width:20%">Run Status</th>
+                    <th style="width:20%">Control Mode</th>
+                    <th style="width:10%">Action</th>
+                </tr>
+
+                <!-- FILTER ROW -->
+                <tr>
+                    <!-- LEVEL -->
+                    <th>
+                        <input pInputText type="text" placeholder="Search level" [(ngModel)]="levelFilter"
+                            (input)="mvTable.filter(levelFilter, 'level', 'contains')" style="width:100%" />
+                    </th>
+
+                    <!-- DESCRIPTION -->
+                    <th>
+                        <input pInputText type="text" placeholder="Search description" [(ngModel)]="descFilter"
+                            (input)="mvTable.filter(descFilter, 'description', 'contains')" style="width:100%" />
+                    </th>
+
+                    <!-- RUN STATUS -->
+                    <th>
+                        <p-dropdown [options]="runStatusOptions" [(ngModel)]="runStatusFilter" placeholder="Any"
+                            (onChange)="mvTable.filter(runStatusFilter, 'runStatus', 'equals')" [showClear]="true"
+                            appendTo="body" styleClass="w-full">
+                        </p-dropdown>
+                    </th>
+
+                    <!-- CONTROL MODE -->
+                    <th>
+                        <p-dropdown [options]="controlModeOptions" [(ngModel)]="controlModeFilter" placeholder="Any"
+                            (onChange)="mvTable.filter(controlModeFilter, 'controlMode', 'equals')" [showClear]="true"
+                            appendTo="body" styleClass="w-full">
+                        </p-dropdown>
+                    </th>
+
+                    <th></th>
+                    </tr>
+
+            </ng-template>
+
+            <ng-template pTemplate="body" let-row>
+                <tr>
+                    <td>{{ row.level }}</td>
+                    <td>{{ row.description }}</td>
+                    <td>
+                        <p-tag [severity]="row.runStatus === 'On' ? 'success' : 'secondary'" [value]="row.runStatus">
+                        </p-tag>
+                    </td>
+                    <td>
+                        <p-tag [value]="row.controlMode"></p-tag>
+                    </td>
+                    <td>
+                        <button pButton icon="pi pi-eye" class="p-button-text p-button-sm"
+                            (click)="openInfoDialog(row)">
+                        </button>
+                    </td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+    </div>
+</div>
+
+<!-- INFO DIALOG -->
+<p-dialog [(visible)]="infoVisible" [modal]="true" [draggable]="false" [style]="{ width: '70rem' }" header="MV Details"
+    [breakpoints]="{ '960px': '95vw' }">
+
+    <div *ngIf="infoAsset" class="mv-dialog-layout">
+
+        <div class="mv-image-panel">
+            <img src="assets/icons/MV.png" alt="MV" class="mv-image" />
+            <div class="mv-image-title">
+                {{ infoAsset.description }}
+            </div>
+        </div>
+
+        <div class="mv-table-panel">
+
+            <div *ngFor="let panel of mvPanels" class="mv-panel-block">
+
+                <div class="mv-panel-title">
+                    {{ panel.code }}
+                    <span class="mv-panel-type">[{{ panel.type }}]</span>
+                </div>
+
+                <table class="mv-details-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Command</th>
+                            <th>Status</th>
+                            <th>Operation State</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let row of panel.rows">
+                            <td>{{ row.no }}</td>
+                            <td>{{ row.command }}</td>
+                            <td class="on">{{ row.status }}</td>
+                            <td class="manual">{{ row.operation }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mv-status-legend">
+                <div class="legend-title">Status Legends:</div>
+
+                <div class="legend-row">
+                    <span class="legend-color on"></span> On State
+                </div>
+                <div class="legend-row">
+                    <span class="legend-color off"></span> Off State
+                </div>
+                <div class="legend-row">
+                    <span class="legend-color alarm"></span> Alarm State
+                </div>
+                <div class="legend-row">
+                    <span class="legend-color manual"></span> Manual State
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <button pButton label="Close" class="p-button-secondary" (click)="closeInfoDialog()"></button>
+    </ng-template>
+
+</p-dialog>

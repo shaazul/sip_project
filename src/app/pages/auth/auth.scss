@@ -1,0 +1,25 @@
+.login-background {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('../../../assets/background/wach_building_3d.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        filter: blur(8px) brightness(0.95);
+        transform: scale(1.05);
+        will-change: transform, filter;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    // Place your content above the blurred background
+    > * {
+        position: relative;
+        z-index: 2;
+    }
+}

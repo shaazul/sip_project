@@ -1,0 +1,121 @@
+<div class="pump">
+    <div class="pump-header">
+        <h1>Pump Summary</h1>
+    </div>
+
+    <div class="card">
+
+        <!-- TOOLBAR -->
+        <div class="pump-toolbar">
+            <p-iconfield iconPosition="left">
+                <p-inputicon>
+                    <i class="pi pi-search"></i>
+                </p-inputicon>
+                <input pInputText type="text" placeholder="Search" [(ngModel)]="globalSearch"
+                    (input)="applyGlobalSearch()" />
+
+            </p-iconfield>
+
+            <p-button label="Clear" icon="pi pi-filter-slash" [outlined]="true" (click)="clearFilters()">
+            </p-button>
+        </div>
+
+        <!-- TABLE -->
+        <p-table [value]="pumpData" styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines" [rows]="10"
+            [paginator]="true" scrollable="true" scrollHeight="flex">
+
+            <!-- HEADER -->
+            <ng-template pTemplate="header">
+
+                <!-- TITLES -->
+                <tr>
+                    <th style="width:12%">Level</th>
+                    <th>Description</th>
+                    <th style="width:16%">Status</th>
+                    <th style="width:16%">Trip</th>
+                    <th style="width:10%">Action</th>
+                </tr>
+
+                <!-- FILTER ROW -->
+                <tr class="custom-filter-row">
+                    <th>
+                        <input pInputText placeholder="Search level" [(ngModel)]="filterLevel"
+                            (input)="applyFilters()" />
+                    </th>
+
+                    <th>
+                        <input pInputText placeholder="Search description" [(ngModel)]="filterDescription"
+                            (input)="applyFilters()" />
+                    </th>
+
+                    <th>
+                        <p-dropdown [options]="statusOptions" placeholder="Any" [(ngModel)]="filterStatus"
+                            (onChange)="applyFilters()" [showClear]="true" appendTo="body">
+                        </p-dropdown>
+
+                    </th>
+
+                    <th>
+                        <p-dropdown [options]="statusOptions" placeholder="Any" [(ngModel)]="filterTrip"
+                            (onChange)="applyFilters()" [showClear]="true" appendTo="body">
+                        </p-dropdown>
+
+                    </th>
+
+                    <!-- ACTION COLUMN PLACEHOLDER -->
+                    <th></th>
+                </tr>
+
+            </ng-template>
+
+            <!-- BODY -->
+            <ng-template pTemplate="body" let-row>
+                <tr>
+                    <td>{{ row.level }}</td>
+                    <td>{{ row.description }}</td>
+
+                    <td>
+                        <span class="pill" [ngClass]="row.status === 'On' ? 'on' : 'off'">
+                            {{ row.status }}
+                        </span>
+                    </td>
+
+                    <td>
+                        <span *ngIf="row.trip" class="pill" [ngClass]="row.trip === 'Off' ? 'off' : 'manual'">
+                            {{ row.trip }}
+                        </span>
+                    </td>
+
+                    <td>
+                        <button pButton icon="pi pi-eye" class="p-button-text p-button-sm"
+                            (click)="openPumpDialog(row)">
+                        </button>
+                    </td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+    </div>
+</div>
+
+<!-- PUMP DETAILS DIALOG -->
+<p-dialog [(visible)]="pumpInfoVisible" [modal]="true" [draggable]="false" [dismissableMask]="true"
+    [style]="{ width: '80vw', maxWidth: '1100px' }" header="{{ pumpInfoAsset?.description }}">
+
+    <!-- STATIC INFO -->
+    <div style="margin-bottom:0.75rem; font-weight:600; ">
+        Data shown: <span style="color:#22c55e">Past 24 hours</span>
+    </div>
+
+
+    <!-- CHART -->
+    <div style="height:420px; border:1px solid ; border-radius:12px; padding:1rem">
+        <p-chart type="line" [data]="chartData" [options]="chartOptions">
+        </p-chart>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <button pButton label="Close" class="p-button-secondary" (click)="closePumpDialog()">
+        </button>
+    </ng-template>
+</p-dialog>

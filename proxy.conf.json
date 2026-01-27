@@ -1,0 +1,14 @@
+{
+  "/api": {
+    "target": "http://178.128.53.199",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/authcheck": {
+    "target": "http://178.128.53.199",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

@@ -1,0 +1,72 @@
+.card {
+    margin-bottom: 20px;
+}
+
+.alarm {
+    padding: 24px;
+}
+
+.alarm-header {
+    margin-bottom: 16px;
+
+    h1 {
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    h2{ font-size:18px}
+}
+
+.alarm-topbar {
+    margin-bottom: 1rem;
+}
+
+/* Title row */
+.alarm-title-row {
+    margin-bottom: 0.5rem;
+
+    h2 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+    }
+}
+
+/* Second row */
+.alarm-action-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Export buttons */
+.export-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Search + clear */
+.alarm-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+
+.status-pill {
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.status-pill.active {
+    background: #ef4444;
+}
+
+.status-pill.historical{
+    background: #22c55e
+}

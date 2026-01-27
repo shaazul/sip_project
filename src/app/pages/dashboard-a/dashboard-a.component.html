@@ -1,0 +1,206 @@
+<div class="dashboard">
+    <h1>Dashboard</h1>
+
+    <!-- ROW 1 : 4 cards -->
+    <div class="row row-1">
+        <div class="card small">
+            <div class="alert-top">
+                <span class="alert-title">System Alerts</span>
+                <span class="alert-time">14:15 , 18 August 2025</span>
+            </div>
+
+            <div class="alert-value">80k</div>
+        </div>
+
+        <div class="card small">
+            <div class="alert-top">
+                <span class="alert-title">Traffic Distribution</span>
+                <span class="alert-time">14:15 , 18 August 2025</span>
+            </div>
+            <div class="alert-value">175k</div>
+        </div>
+
+        <div class="card small">
+            <div class="alert-top">
+                <span class="alert-title">Total Visitor Count</span>
+                <span class="alert-time">14:15 , 18 August 2025</span>
+            </div>
+            <div class="alert-value">120</div>
+        </div>
+
+        <div class="card small">
+            <div class="alert-top">
+                <span class="alert-title">Work Order</span>
+                <span class="alert-time">14:15 , 18 August 2025</span>
+            </div>
+            <div class="alert-value">4</div>
+        </div>
+    </div>
+
+    <!-- ROW 2 : 2 cards -->
+    <div class="row row-2">
+        <div class="card large alarms-card">
+            <div class="card-header">
+                <span class="card-title">System Alarm</span>
+            </div>
+
+            <p-table [value]="alarms" showGridlines scrollable="true" scrollHeight="350px"
+                [tableStyle]="{ 'min-width': '100%' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Occurred</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-alarm>
+                    <tr>
+                        <td>{{ alarm.name }}</td>
+                        <td>
+                            <span class="alarm-type" [ngClass]="alarm.type.toLowerCase()">
+                                {{ alarm.type }}
+                            </span>
+                        </td>
+                        <td>{{ alarm.occurred }}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+
+        <div class="card large updates-card">
+            <div class="card-header">
+                <h3 class="card-title">Recent System Updates</h3>
+            </div>
+            <div class="updates-scroll">
+                <div class="update-item" *ngFor="let item of updates">
+                    <div class="update-title">
+                        <i class="pi pi-wrench"></i>
+                        <span>{{ item.title }}</span>
+                    </div>
+                    <p>{{ item.description }}</p>
+                    <span class="update-date">{{ item.date }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-3">
+        <div class="card medium productivity-card">
+            <!-- <div class="card medium productivity-card"> -->
+                <div class="productivity-info">
+                    <h3 class="card-title-b">Productivity</h3>
+                    <div class="productivity-value">60</div>
+                    <div class="productivity-change positive">
+                        +12% <i class="pi pi-arrow-up"></i>
+                    </div>
+                </div>
+                <div class="knob-wrapper">
+                    <p-knob [(ngModel)]="productivity" [size]="150" [strokeWidth]="6" [readonly]="true"
+                        valueTemplate="{value}%"></p-knob>
+                </div>
+            <!-- </div> -->
+        </div>
+
+        <div class="card medium productivity-card spark-card">
+            <div class="productivity-info">
+                <h3 class="card-title-b">Functionalities</h3>
+
+                <div class="productivity-value">92</div>
+
+                <div class="productivity-change positive">
+                    +8% <i class="pi pi-arrow-up"></i>
+                </div>
+            </div>
+
+            <div class="sparkline-wrapper right">
+                <p-chart type="line" [data]="sparklineData" [options]="sparklineOptions">
+                </p-chart>
+            </div>
+        </div>
+
+        <div class="card medium notification-card">
+            <div class="notification-top">
+                <h3 class="card-title">Notification</h3>
+                <i class="pi pi-bell"></i>
+            </div>
+
+            <p-table [value]="notifications" class="notification-table" responsiveLayout="scroll">
+                <ng-template pTemplate="body" let-item>
+                    <tr>
+                        <!-- CODE + NAME -->
+                        <td>
+                            <div class="notification-country">
+                                <span class="country-code">{{ item.code }}</span>
+                                <span class="country-name">{{ item.country }}</span>
+                            </div>
+                        </td>
+
+                        <!-- VALUE -->
+                        <td class="notification-value">
+                            {{ item.value }}
+                        </td>
+
+                        <!-- CHANGE -->
+                        <td>
+                            <div class="notification-change" [ngClass]="item.trend">
+                                <i class="pi" [ngClass]="item.trend === 'up' ? 'pi-arrow-up' : 'pi-arrow-down'"></i>
+                                {{ item.change }}
+                            </div>
+                        </td>
+
+                        <!-- STATUS -->
+                        <td>
+                            <span class="notification-status-pill" [ngClass]="item.status.toLowerCase()">
+                                {{ item.status }}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+        </div>
+    </div>
+
+    <!-- ROW 4 : 2 cards -->
+    <div class="row row-4">
+        <div class="card xlarge">
+            <div class="card-header">
+                <h3 class="card-title">Monthly Performance</h3>
+            </div>
+            <div class="chart-wrapper">
+                <p-chart type="line" [data]="lineData" [options]="chartOptions">
+                </p-chart>
+
+            </div>
+        </div>
+
+        <div class="card tall developed-card">
+
+            <h3 class="card-title">System Summary</h3>
+
+            <div class="donut-wrapper">
+                <p-chart type="doughnut" [data]="donutData" [options]="donutOptions" class="w-full md:w-[15rem]">
+                </p-chart>
+
+                <div class="donut-center">
+                    <span class="donut-value">66%</span>
+                    <span class="donut-label">Overall</span>
+                </div>
+            </div>
+
+            <div class="skill" *ngFor="let item of skills">
+                <div class="skill-header">
+                    <span class="skill-name">{{ item.name }}</span>
+                    <span class="skill-value">{{ item.value }}%</span>
+                </div>
+
+                <div class="progress-track">
+                    <div class="progress-fill" [style.width.%]="item.value">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
