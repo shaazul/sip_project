@@ -40,7 +40,7 @@ import moment from 'moment-timezone';
       <!-- <button class="layout-menu-button layout-topbar-action" (click)="layoutService.onMenuToggle()">
         <i class="pi pi-bars"></i>
       </button> -->
-      <a class="layout-topbar-logo" routerLink="/landing">
+      <a class="layout-topbar-logo" routerLink="/package/landing">
         <img src="assets/icons/RDM_Logo.png" alt="RDM"
              class="layout-topbar-logo-image w-24 sm:w-32 md:w-40 lg:w-48 h-auto" />
       </a>

@@ -4,15 +4,22 @@ import { ChatbotComponent } from '../../shared/chatbot/chatbot.component';
 @Component({
     standalone: true,
     selector: 'app-footer',
-    imports: [ChatbotComponent],
+    imports: [],
     template: `<div class="layout-footer">
-        <div class="footer-left">
-            <app-chatbot></app-chatbot>
+        <div class="layout-footer">
+            <div class="footer-center">
+                Admin by <b>RDMA</b>
+            </div>
         </div>
-        <div class="footer-center">
-            Admin by <b>RDMA</b>
-        </div>
-        <div class="footer-right"></div>
-    </div>`
+    `,
+    styles: [`
+        .layout-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 3rem;
+        }
+    `]
 })
-export class AppFooter {}
+export class AppFooter { }

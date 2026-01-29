@@ -19,4 +19,8 @@ export class CatalogueComponent {
   goToDashboardComponent() {
     this.router.navigate(['/main/dashboard-a']);
   }
+
+    goToUnityComponent() {
+    this.router.navigate(['/package/description']);
+  }
 }

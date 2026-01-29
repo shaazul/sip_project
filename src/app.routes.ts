@@ -27,6 +27,7 @@ import { BreakerComponent } from './app/pages/breaker/breaker.component';
 import { AlarmComponent } from './app/pages/alarm/alarm.component';
 import { FloorComponent } from './app/pages/floor/floor.component';
 import { AppLayout2 } from './app/layout/component/app.layout-2';
+import { DescriptionComponent } from './app/pages/description/description.component';
 
 export const appRoutes: Routes = [
     // Redirect the root URL to login
@@ -86,20 +87,24 @@ export const appRoutes: Routes = [
             { path: 'dashboard-a', component: DashboardAComponent},
             { path: 'login-1', component: Login1Component},
             { path: 'landing', component: LandingPageComponent },
-            { path: 'change-password', component: ChangePasswordComponent },
             { path: 'settings', component: SettingsComponent },
             { path: 'testing-page', component: Test },
-            { path: 'profile', component: UserTemplateComponent },
-            { path: 'marquee-setting', component: MarqueeSettingComponent },
         ]
     },
+    // {
+    //     path: 'unity',
+    //     component: AppLayout3,
+    //     children: [
+    //         { path: 'description', component: DescriptionComponent}
+    //     ]
+    // },
      {
         path: 'package',
         component: AppLayout2,
-        // canActivate: [AuthGuard],
         children: [
             { path: 'landing', component: LandingPageComponent },
             { path: 'catalogue', component: CatalogueComponent},
+            { path: 'description', component: DescriptionComponent},
         ]
     },
     { path: 'notfound', component: Notfound },

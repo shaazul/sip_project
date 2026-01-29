@@ -16,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-layout-2',
     standalone: true,
-    imports: [CommonModule, AppTopbar, RouterModule, AppFooter, ToastModule ],
+    imports: [CommonModule, AppTopbar, RouterModule, AppFooter, ToastModule],
     template: `
     <!-- <div class="layout-wrapper" [ngClass]="containerClass">
             <app-topbar></app-topbar>
@@ -30,13 +30,29 @@ import { ActivatedRoute } from '@angular/router';
             <div class="layout-mask animate-fadein"></div>
         </div>
         <p-toast /> -->
-        <div class="layout-wrapper" [ngClass]="containerClass">
-            <app-topbar></app-topbar>
+        <!-- <div class="layout-wrapper no-sidebar-layout" [ngClass]="containerClass">
+            <app-topbar></app-topbar> -->
             <!-- <app-sidebar></app-sidebar> -->
             
+            <!-- <div class="layout-main-container">
+                <div class="layout-main mb-1"> -->
+                    <!-- Scrollable content -->
+                    <!-- <div class="router-container">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+
+                <app-footer></app-footer>
+            </div>
+
+            <div class="layout-mask animate-fadein"></div>
+        </div>
+        <p-toast /> -->
+        <div class="layout-wrapper no-sidebar-layout" [ngClass]="containerClass">
+            <app-topbar></app-topbar>
+
             <div class="layout-main-container">
                 <div class="layout-main mb-1">
-                    <!-- Scrollable content -->
                     <div class="router-container">
                         <router-outlet></router-outlet>
                     </div>
@@ -48,7 +64,19 @@ import { ActivatedRoute } from '@angular/router';
             <div class="layout-mask animate-fadein"></div>
         </div>
         <p-toast />
-        `
+    `,
+    styles: [`
+        .no-sidebar-layout .layout-main-container {
+            margin-left: 0 !important;
+            // padding-left: 0 !important;
+            width: 100%;
+        }
+
+        .no-sidebar-layout .layout-main {
+            margin-left: 0 !important;
+        }
+    `]
+
 })
 export class AppLayout2 {
     overlayMenuOpenSubscription: Subscription;
@@ -109,7 +137,7 @@ export class AppLayout2 {
 
         this.httpService.getData(url).subscribe({
             next: (response: any) => {
-                const user:any = response.user
+                const user: any = response.user
                 const jsonString = JSON.stringify(user);
                 localStorage.setItem('userData', jsonString);
 
@@ -123,7 +151,7 @@ export class AppLayout2 {
 
                 localStorage.setItem('layout-config', JSON.stringify(layout));
             },
-            error: (error) => {}
+            error: (error) => { }
         });
     }
 
