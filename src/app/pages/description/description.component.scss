@@ -3,10 +3,106 @@
 }
 
 .desc-header {
-    margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
 
-    h1 {
-        font-size: 24px;
-        font-weight: 700;
-    }
+.desc-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.page-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+
+.header-small-title {
+    color: #10b981;
+    font-weight: 600;
+}
+
+.parag {
+    margin-bottom: 18px;
+}
+
+.parag-main {
+    margin-left: 13px;
+}
+
+:host ::ng-deep .p-fieldset-legend {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.unity-layout {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.unity-left {
+    flex: 0.95;
+}
+
+.unity-right {
+    flex: 1;
+    position: relative;
+}
+
+.unity-tabs {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.tab-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #e5e7eb;
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #374151;
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+    background: #f9fafb;
+}
+
+.tab-btn.active {
+    background: #0f7b5c;
+    color: #ffffff;
+    border-color: #0f7b5c;
+    font-weight: 600;
+}
+
+.unity-right img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-top: 10px;
+    border: 0.5px solid #414141;
+}
+
+.unity-action {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+.see-design-btn {
+    background: #0f7b5c;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
 }

@@ -1,16 +1,99 @@
 <div class="desc">
-    <div class="desc-header">
-        <h1>Unity Description</h1>
-    </div>
+  <div class="desc-header">
+    <h1>Unity Description</h1>
 
-    <div>
-        <p-breadcrumb class="max-w-full" [model]="" [home]="">
-            <ng-template #item let-item>
-                <a class="cursor-pointer">
-                    <i [class]="item.icon"></i>
-                </a>
-            </ng-template>
-            <ng-template #separator> / </ng-template>
-        </p-breadcrumb>
+    <div class="page-tabs">
+      <button class="tab-btn" [class.active]="activeTab === 'desc'" (click)="goToDescription()">
+              Unity Description
+            </button>
+
+      <button class="tab-btn" [class.active]="activeTab === 'design'" (click)="goToDesign()">
+              Unity Design
+            </button>
     </div>
+  </div>
+
+
+  <div class="card">
+    <p-fieldset legend="Unity-Powered 3D Building & BMS Visualization">
+
+      <!-- FLEX CONTAINER -->
+      <div class="unity-layout">
+
+        <!-- LEFT : YOUR EXISTING CONTENT -->
+        <div class="unity-left">
+
+          <p class="parag-main m-1">
+            We provide a fully interactive 3D building visualization platform powered by Unity,
+          </p>
+          <p class="parag-main m-1">
+            designed to transform how building owners and facility managers monitor, understand,
+          </p>
+          <p class="parag-main parag m-1">
+            and operate their Building Management System (BMS).
+          </p>
+          <p class="parag-main m-1">
+            Our solution combines real-time system data, 3D building models, and 2D schematic views
+          </p>
+          <p class="parag-main m-1">
+            into one intuitive interface giving users complete visibility of the building, from overall
+          </p>
+          <p class="parag-main m-1">
+            structure down to individual equipment.
+          </p>
+
+          <p-divider />
+
+          <p class="header-small-title m-1">
+            Full Building Visualization
+          </p>
+
+          <p class="m-1">
+            The system presents the entire building in high-fidelity 3D, allowing users to:
+          </p>
+
+          <p class="m-1">• View the whole building structure</p>
+          <p class="m-1">• Navigate floor by floor</p>
+          <p class="m-1">• Zoom into specific rooms, zones, or plant areas</p>
+          <p class="m-1">• Instantly identify where each system and asset is located</p>
+
+          <p-divider />
+
+          <p class="header-small-title m-1">
+            Interactive Floor & Level Navigation
+          </p>
+
+          <p class="m-1">
+            At the bottom of the interface, users can select any building level:
+          </p>
+
+          <p class="m-1">• Clicking a level automatically brings the user to the selected floor</p>
+          <p class="m-1">• The system highlights all mapped BMS assets on that floor</p>
+          <p class="m-1">• Equipment locations are clearly shown based on actual room and area placement</p>
+
+        </div>
+
+        <!-- RIGHT : IMAGE PANEL -->
+        <div class="unity-right">
+
+          <!-- TOP RIGHT TABS -->
+          <!-- <div class="unity-tabs">
+            <button class="tab-btn" [class.active]="activeTab === 'desc'" (click)="goToDescription()">
+              Unity Description
+            </button>
+
+            <button class="tab-btn" [class.active]="activeTab === 'design'" (click)="goToDesign()">
+              Unity Design
+            </button>
+
+          </div> -->
+
+          <!-- IMAGE -->
+          <img src="assets/icons/unity1.png" alt="3D Building" />
+
+        </div>
+      </div>
+
+    </p-fieldset>
+  </div>
 </div>

@@ -1,0 +1,259 @@
+<div class="design">
+    <div class="design-header">
+        <h1>Unity Design</h1>
+
+        <div class="page-tabs">
+            <button class="tab-btn" [class.active]="activeTab === 'desc'" (click)="goToDescription()">
+                Unity Description
+            </button>
+
+            <button class="tab-btn" [class.active]="activeTab === 'design'" (click)="goToDesign()">
+                Unity Design
+            </button>
+        </div>
+    </div>
+
+    <div class=card>
+        <p-fieldset legend="Unity Content">
+
+            <div class="unity-content-layout">
+
+                <!-- LEFT PANEL -->
+                <div class="unity-left-panel">
+
+                    <p-stepper [(value)]="activeStep">
+
+                        <p-step-list>
+                            <p-step [value]="1">Landing</p-step>
+                            <p-step [value]="2">Navigation</p-step>
+                            <p-step [value]="3">Floor</p-step>
+                            <p-step [value]="4">Details</p-step>
+                        </p-step-list>
+
+                        <p-step-panels>
+
+                            <p-step-panel [value]="1">
+                                <ng-template #content let-activateCallback="activateCallback">
+
+                                    <img src="assets/icons/unity2.png" class="unity-image" />
+
+                                    <div class="step-actions">
+                                        <p-button label="Next" icon="pi pi-arrow-right" iconPos="right"
+                                            (onClick)="activateCallback(2)" />
+                                    </div>
+
+                                </ng-template>
+                            </p-step-panel>
+
+                            <p-step-panel [value]="2">
+                                <ng-template #content let-activateCallback="activateCallback">
+
+                                    <img src="assets/icons/unity3.png" class="unity-image" />
+
+                                    <div class="step-actions">
+                                        <p-button label="Back" severity="secondary" icon="pi pi-arrow-left"
+                                            (onClick)="activateCallback(1)" />
+                                        <p-button label="Next" icon="pi pi-arrow-right" iconPos="right"
+                                            (onClick)="activateCallback(3)" />
+                                    </div>
+
+                                </ng-template>
+                            </p-step-panel>
+
+                            <p-step-panel [value]="3">
+                                <ng-template #content let-activateCallback="activateCallback">
+
+                                    <img src="assets/icons/unity4.png" class="unity-image" />
+
+                                    <div class="step-actions between">
+                                        <p-button label="Back" severity="secondary" icon="pi pi-arrow-left"
+                                            (onClick)="activateCallback(2)" />
+                                        <p-button label="Next" icon="pi pi-arrow-right" iconPos="right"
+                                            (onClick)="activateCallback(4)" />
+                                    </div>
+
+                                </ng-template>
+                            </p-step-panel>
+
+                            <p-step-panel [value]="4">
+                                <ng-template #content let-activateCallback="activateCallback">
+
+                                    <img src="assets/icons/unity5.png" class="unity-image" />
+
+                                    <div class="step-actions between">
+                                        <p-button label="Back" severity="secondary" icon="pi pi-arrow-left"
+                                            (onClick)="activateCallback(3)" />
+                                        <p-button label="Next" icon="pi pi-arrow-right" iconPos="right"
+                                            (onClick)="activateCallback(4)" />
+                                    </div>
+
+                                </ng-template>
+                            </p-step-panel>
+
+                        </p-step-panels>
+
+                    </p-stepper>
+                </div>
+
+                <p-divider layout="vertical"></p-divider>
+
+                <!-- RIGHT PANEL -->
+                <div class="unity-right-panel">
+
+                    <ng-container [ngSwitch]="activeStep">
+
+                        <div *ngSwitchCase="1">
+                            <p class=title-point>Full Building Visualization</p>
+                            <p class="header-small-title m-1">
+                                Immersive 360° Building Exploration
+                            </p>
+
+                            <p class="exp m-1">
+                                The Unity-based platform enables full 360-degree camera movement allowing to freely:
+                            </p>
+
+                            <p class="m-1">• Rotate, pan, and zoom around the building</p>
+                            <p class="m-1">• View the facility from any angle or elevation</p>
+                            <p class="end-parag m-1">• Inspect rooftops and surrounding areas</p>
+
+                            <p class="header-small-title m-1">
+                                Realistic Environment & Time-Based Visualization
+                            </p>
+
+                            <p class="exp m-1">
+                                The system supports dynamic environmental conditions, including:
+                            </p>
+
+                            <p class="m-1">• Day and night modes reflecting actual time conditions</p>
+                            <p class="end-parag m-1">• Weather visualization such as rain or clear skies</p>
+
+                            <p class="header-small-title m-1">
+                                Live Weather & External Condition Awareness
+                            </p>
+
+                            <p class="exp m-1">
+                                The platform can display real-time external environmental data such as:
+                            </p>
+
+                            <p class="m-1">• Current outdoor temperature</p>
+                            <p class="m-1">• Weather conditions (rain, clear, cloudy)</p>
+                            <p class="end-parag m-1">• Time-of-day indicators</p>
+                        </div>
+
+                        <div *ngSwitchCase="2">
+                            <p class=title-point>System Navigation & Power Overview</p>
+                            <p class="header-small-title m-1">
+                                Left Panel - System Navigation
+                            </p>
+
+                            <p class="exp m-1">
+                                The System Navigation panel provides direct access to all major building systems in one
+                                place.
+                                When a user selects a system from the left panel:
+                            </p>
+
+                            <p class="m-1">•
+                                The interface automatically navigates to the relevant Unified Control data table
+                            </p>
+                            <p class="m-1">• Live system information is displayed clearly in a structured format</p>
+                            <p class="end-parag m-1">• Users can immediately review status, performance and operational
+                                data</p>
+
+                            <p class="header-small-title m-1">
+                                Right Panel - Power & Energy Summary Dashboard
+                            </p>
+
+                            <p class="exp m-1">
+                                The Power Summary panel provides a high-level overview of the building's energy
+                                performance in real time. It displays key indicators such as:
+                            </p>
+
+                            <p class="m-1">• Overall and average energy consumption</p>
+                            <p class="m-1">• Power demand and usage trends</p>
+                            <p class="m-1">• Solar generation performance</p>
+                            <p class="m-1">• Battery status and energy storage levels</p>
+                            <p class="end-parag m-1">• Solar panel contribution to total energy usage</p>
+
+                        </div>
+
+                        <div *ngSwitchCase="3">
+                            <p class=title-point>Smart Floor-Level Navigation & System Mapping</p>
+                            <p class="header-small-title m-1">
+                                Direct Floor Selection (Step-Based Navigation)
+                            </p>
+
+                            <p class="exp m-1">
+                                At Step 2, users can select any floor directly from the floor navigation interface. When
+                                a floor is selected:
+                            </p>
+
+                            <p class="m-1">• The view automatically transitions to the chosen floor
+                            </p>
+                            <p class="m-1">• Live system information is displayed clearly in a structured format</p>
+                            <p class="m-1">• The building model adjusts to display only the selected level</p>
+                            <p class="end-parag m-1">• The building model adjusts to display only the selected level</p>
+
+
+                            <p class="header-small-title m-1">
+                                Complete System Mapping by Floor
+                            </p>
+
+                            <p class="end-parag m-1">
+                                Once select the floor, the system displays the exact location of building services.
+                                Each system is mapped based on its actual room and zone location.
+                            </p>
+
+                            <p class="header-small-title m-1">
+                                Continuous Level Navigation via Scroll Control
+                            </p>
+
+                            <p class="exp m-1">
+                                To direct floor selection, users can still navigate smoothly between levels using the
+                                scroll level function located at the bottom of the interface.
+                            </p>
+
+                        </div>
+
+                        <div *ngSwitchCase="4">
+                            <p class=title-point>System Monitoring & Detailed Status</p>
+                            <p class="header-small-title m-1">
+                                Asset-Level View
+                            </p>
+
+                            <p class="exp m-1">
+                                When a user clicks on an system services displayed on the selected floor map:
+                            </p>
+
+                            <p class="m-1">• The system automatically navigates to the system detail page
+                            </p>
+                            <p class="m-1">• The selected system is shown in a dedicated 3D and 2D view</p>
+                            <p class="end-parag m-1">• All related operational data is presented in a clear & structured
+                                layout</p>
+
+
+                            <p class="header-small-title m-1">
+                                Real-Time System Status & Operational Data
+                            </p>
+
+                            <p class="exp m-1">
+                                Each system detail page provides comprehensive system information, including:
+                            </p>
+                            <p class="m-1">•
+                                Operational status (running, standby, fault, etc.)
+                            </p>
+                            <p class="m-1">• Supply and return air parameters</p>
+                            <p class=" m-1">• Temperature, pressure, and airflow readings</p>
+                            <p class="end-parag m-1">• Filter condition and system alarms (if applicable)</p>
+
+                        </div>
+
+                    </ng-container>
+
+                </div>
+
+            </div>
+
+        </p-fieldset>
+
+    </div>
+</div>

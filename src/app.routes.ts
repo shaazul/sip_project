@@ -28,6 +28,7 @@ import { AlarmComponent } from './app/pages/alarm/alarm.component';
 import { FloorComponent } from './app/pages/floor/floor.component';
 import { AppLayout2 } from './app/layout/component/app.layout-2';
 import { DescriptionComponent } from './app/pages/description/description.component';
+import { DesignComponent } from './app/pages/design/design.component';
 
 export const appRoutes: Routes = [
     // Redirect the root URL to login
@@ -105,6 +106,7 @@ export const appRoutes: Routes = [
             { path: 'landing', component: LandingPageComponent },
             { path: 'catalogue', component: CatalogueComponent},
             { path: 'description', component: DescriptionComponent},
+            { path: 'design', component: DesignComponent},
         ]
     },
     { path: 'notfound', component: Notfound },

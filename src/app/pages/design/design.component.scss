@@ -1,0 +1,108 @@
+.design {
+    padding: 24px;
+}
+
+.design-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.design-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.page-tabs {
+    display: flex;
+    gap: 8px;
+}
+
+
+:host ::ng-deep .p-fieldset-legend {
+    color: #10b981;
+    font-weight: 600;
+}
+
+.unity-content-layout {
+    display: flex;
+    gap: 24px;
+}
+
+.unity-left-panel {
+    flex: 1.4;
+}
+
+.unity-right-panel {
+    flex: 1;
+}
+
+.unity-image {
+    width: 98%;
+    border-radius: 12px;
+    margin-top: 16px;
+    margin-left:19px;
+    border: 0.5px solid #414141;
+    object-fit: cover;
+}
+
+.step-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+    gap: 12px;
+}
+
+.step .between {
+    justify-content: space-between;
+}
+
+.tab-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #e5e7eb;
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #374151;
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+    background: #f9fafb;
+}
+
+.tab-btn.active {
+    background: #0f7b5c;
+    color: #ffffff;
+    border-color: #0f7b5c;
+    font-weight: 600;
+}
+
+
+.title-point {
+    color: #10b981;
+    margin-bottom: 35px;
+    margin-top: 11px;
+    font-weight: 600;
+    font-size: 19px;
+}
+
+.end-parag {
+    margin-bottom: 40px;
+}
+
+.exp {
+    margin-bottom: 10px
+}
+
+.header-small-title {
+    color: #10b981;
+    font-weight: 600;
+}
+
+.unity-right-panel ul {
+    padding-left: 18px;
+}
