@@ -68,25 +68,26 @@ export const appRoutes: Routes = [
     {
         path: 'main',
         component: AppLayout,
+        data: { theme: 'default' }, // baru tambah sini
         // canActivate: [AuthGuard],
         children: [
             { path: '', component: LandingPageComponent },
             // { path: 'landing', component: LandingPageComponent },
             // { path: 'catalogue', component: CatalogueComponent},
-            { path: 'chiller', component: TableComponent},
-            { path: 'ahu', component: AhuTableComponent},
-            { path: 'vav', component: VavComponent},
-            { path: 'genset', component: GensetComponent},
-            { path: 'pdb', component: PdbComponent},
-            { path: 'user', component:UserListComponent},
-            { path: 'mv', component: MvComponent},
-            { path: 'fcu', component: FcuComponent},
-            { path: 'pump', component: PumpComponent},
-            { path: 'breaker', component: BreakerComponent},
-            { path: 'alarm', component: AlarmComponent},
-            { path: 'floor', component: FloorComponent},
-            { path: 'dashboard-a', component: DashboardAComponent},
-            { path: 'login-1', component: Login1Component},
+            { path: 'chiller', component: TableComponent },
+            { path: 'ahu', component: AhuTableComponent },
+            { path: 'vav', component: VavComponent },
+            { path: 'genset', component: GensetComponent },
+            { path: 'pdb', component: PdbComponent },
+            { path: 'user', component: UserListComponent },
+            { path: 'mv', component: MvComponent },
+            { path: 'fcu', component: FcuComponent },
+            { path: 'pump', component: PumpComponent },
+            { path: 'breaker', component: BreakerComponent },
+            { path: 'alarm', component: AlarmComponent },
+            { path: 'floor', component: FloorComponent },
+            { path: 'dashboard-a', component: DashboardAComponent },
+            { path: 'login-1', component: Login1Component },
             { path: 'landing', component: LandingPageComponent },
             { path: 'settings', component: SettingsComponent },
             { path: 'testing-page', component: Test },
@@ -99,14 +100,15 @@ export const appRoutes: Routes = [
     //         { path: 'description', component: DescriptionComponent}
     //     ]
     // },
-     {
+    {
         path: 'package',
         component: AppLayout2,
+        data: { theme: 'landing' }, //baru tambah sini
         children: [
             { path: 'landing', component: LandingPageComponent },
-            { path: 'catalogue', component: CatalogueComponent},
-            { path: 'description', component: DescriptionComponent},
-            { path: 'design', component: DesignComponent},
+            { path: 'catalogue', component: CatalogueComponent },
+            { path: 'description', component: DescriptionComponent },
+            { path: 'design', component: DesignComponent },
         ]
     },
     { path: 'notfound', component: Notfound },

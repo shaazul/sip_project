@@ -42,14 +42,14 @@ import moment from 'moment-timezone';
       </button> -->
       <a class="layout-topbar-logo" routerLink="/package/landing">
         <img src="assets/icons/RDM_Logo.png" alt="RDM"
-             class="layout-topbar-logo-image w-24 sm:w-32 md:w-40 lg:w-48 h-auto" />
+             class="layout-topbar-logo-image w-24 sm:w-30 md:w-38 lg:w-44 h-auto" />
       </a>
     </div>
 
     <!-- RIGHT: buttons + dark mode toggle -->
     <div class="flex items-center gap-4">
-      <button pButton type="button" label="Home" class="p-button-text" routerLink="/package/landing"></button>
-      <button pButton type="button" label="Contact" class="p-button-text"></button>
+      <button pButton type="button" label="Landing Page" class="p-button-text" routerLink="/package/landing"></button>
+      <button pButton type="button" label="Design Packages" class="p-button-text" routerLink="/package/catalogue"></button>
 
       <!-- Dark mode toggle -->
       <p-button type="button" (onClick)="toggleDarkMode()" [rounded]="true"
