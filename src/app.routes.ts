@@ -68,7 +68,7 @@ export const appRoutes: Routes = [
     {
         path: 'main',
         component: AppLayout,
-        data: { theme: 'default' }, // baru tambah sini
+        // data: { theme: 'default' }, // baru tambah sini
         // canActivate: [AuthGuard],
         children: [
             { path: '', component: LandingPageComponent },
@@ -87,10 +87,10 @@ export const appRoutes: Routes = [
             { path: 'alarm', component: AlarmComponent },
             { path: 'floor', component: FloorComponent },
             { path: 'dashboard-a', component: DashboardAComponent },
-            { path: 'login-1', component: Login1Component },
-            { path: 'landing', component: LandingPageComponent },
-            { path: 'settings', component: SettingsComponent },
-            { path: 'testing-page', component: Test },
+            // { path: 'login-1', component: Login1Component },
+            // { path: 'landing', component: LandingPageComponent },
+            // { path: 'settings', component: SettingsComponent },
+            // { path: 'testing-page', component: Test },
         ]
     },
     // {
@@ -103,7 +103,7 @@ export const appRoutes: Routes = [
     {
         path: 'package',
         component: AppLayout2,
-        data: { theme: 'landing' }, //baru tambah sini
+        // data: { theme: 'landing' }, //baru tambah sini
         children: [
             { path: 'landing', component: LandingPageComponent },
             { path: 'catalogue', component: CatalogueComponent },

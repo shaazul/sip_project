@@ -76,8 +76,8 @@ export class AhuTableComponent {
   ];
 
   controlModeOptions = [
-    { label: 'A', value: 'A' },
-    { label: 'M', value: 'M' }
+    { label: 'Auto', value: 'A' },
+    { label: 'Manual', value: 'Ml' }
   ];
 
   onGlobalSearch(value: string) {

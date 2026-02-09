@@ -15,8 +15,7 @@
                         <i class="pi pi-search"></i>
                     </p-inputicon>
                     <input pInputText type="text" [(ngModel)]="globalSearch"
-                        (input)="pdbTable.filterGlobal($any($event.target).value, 'contains')"
-                        placeholder="Search" />
+                        (input)="pdbTable.filterGlobal($any($event.target).value, 'contains')" placeholder="Search" />
                 </p-iconfield>
 
                 <p-button label="Clear" icon="pi pi-filter-slash" [outlined]="true" (click)="clear(pdbTable)">
@@ -84,15 +83,14 @@
                     <td>{{ row.energy }}</td>
                     <td>{{ row.freq }}</td>
                     <td>
-                        <span [class.text-green-500]="row.breaker === 'ON'"
-                            [class.text-red-500]="row.breaker === 'OFF'">
+                        <span class="pill" [ngClass]="row.breaker === 'ON' ? 'on' : 'off'">
                             {{ row.breaker }}
                         </span>
                     </td>
+
                     <td>{{ row.remarks }}</td>
                     <td>
-                        <button pButton icon="pi pi-eye" class="p-button-text p-button-sm"
-                            (click)="viewChart(row)">
+                        <button pButton icon="pi pi-eye" class="p-button-text p-button-sm" (click)="viewChart(row)">
                         </button>
                     </td>
                     <!-- <td class="text-center">
@@ -114,10 +112,10 @@
 
         <p-chart type="line" [data]="data" [options]="options" class="h-[30rem]"></p-chart>
 
-            <ng-template pTemplate="footer">
-        <button pButton label="Close" class="p-button-secondary" (click)="closePdbDialog()">
-        </button>
-    </ng-template>
+        <ng-template pTemplate="footer">
+            <button pButton label="Close" class="p-button-secondary" (click)="closePdbDialog()">
+            </button>
+        </ng-template>
 
     </p-dialog>
 
