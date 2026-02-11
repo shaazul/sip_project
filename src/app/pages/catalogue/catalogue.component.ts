@@ -17,7 +17,7 @@ export class CatalogueComponent {
     constructor(private router: Router) { }
 
   goToDashboardComponent() {
-    this.router.navigate(['/main/dashboard-a']);
+    this.router.navigate(['/package/login-1']);
   }
 
     goToUnityComponent() {

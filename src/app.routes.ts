@@ -109,6 +109,7 @@ export const appRoutes: Routes = [
             { path: 'catalogue', component: CatalogueComponent },
             { path: 'description', component: DescriptionComponent },
             { path: 'design', component: DesignComponent },
+            { path: 'login-1', component: Login1Component },
         ]
     },
     { path: 'notfound', component: Notfound },

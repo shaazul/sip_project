@@ -1,1 +1,71 @@
-<p>login-1 works!</p>
+<div style="position: relative; z-index: 9">
+    <app-floating-configurator />
+</div>
+
+<p-toast></p-toast>
+
+<div class="flex items-center justify-center py-10">
+
+    <div style="
+        border-radius: 42px;
+        padding: 0.25rem;
+        background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33,107,243,0) 30%);
+        max-width: 600px;
+        width: 100%;
+    ">
+
+        <!-- LOGIN CARD -->
+        <div class="bg-surface-0 dark:bg-surface-900 px-12 py-14" style="border-radius: 40px;">
+
+            <!-- HEADER -->
+            <div class="login-header">
+                <img src="assets/icons/RDM_Logo.png" class="login-logo" />
+
+                <div class="login-welcome">
+                    Welcome to ICC RDMA
+                </div>
+
+                <div class="login-sub">
+                    Sign in to continue
+                </div>
+            </div>
+
+            <!-- FORM -->
+            <form (ngSubmit)="onSignIn()" #loginForm="ngForm" novalidate>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+                    <label class="block text-xl font-medium mb-2">Email</label>
+
+                    <input pInputText type="email" name="email" placeholder="Email address" class="w-full"
+                        [(ngModel)]="username" required />
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="form-group">
+                    <label class="block text-xl font-medium mb-2">Password</label>
+
+                    <p-password name="password" [(ngModel)]="password" placeholder="Password" [toggleMask]="true"
+                        [feedback]="false" styleClass="w-full" required>
+                    </p-password>
+                </div>
+
+                <!-- OPTIONS -->
+                <div class="login-options mb-6">
+                    <div class="flex items-center gap-2 mt-1 mb-2">
+                        <p-checkbox [(ngModel)]="checked" name="rememberMe" [binary]="true"></p-checkbox>
+                        <label>Remember me</label>
+                    </div>
+
+                    <span class="text-primary cursor-pointer">
+                        Forgot password?
+                    </span>
+                </div>
+
+                <p-button label="Click Here To Continue" styleClass="w-full" type="submit" (click)="goToUC()"></p-button>
+
+            </form>
+
+        </div>
+    </div>
+</div>

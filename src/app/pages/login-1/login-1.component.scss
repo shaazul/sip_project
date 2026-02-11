@@ -1,0 +1,66 @@
+.login-header {
+    text-align: center;
+    margin-bottom: 1.75rem;
+}
+
+.login-logo {
+    width: 220px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 1rem auto;
+    display: block;
+}
+
+.login-welcome {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    font-size: 18px;
+    margin-top: 0.5rem;
+}
+
+.login-sub {
+    color: #8d939e;
+    margin-top:12px;
+}
+
+:host ::ng-deep .p-password {
+  width: 100%;
+}
+
+:host ::ng-deep .p-password-input {
+  width: 100%;
+}
+
+:host ::ng-deep .p-password {
+  position: relative;
+}
+
+:host ::ng-deep .p-password .p-password-toggle {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+
+:host ::ng-deep input.p-inputtext,
+:host ::ng-deep .p-password-input {
+  height: 44px;
+  padding: 0.75rem 0.75rem;
+  border-radius: 6px;
+}
+
+.login-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+}
+
+.login-options label {
+  margin: 0;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
