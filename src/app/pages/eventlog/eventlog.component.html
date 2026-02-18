@@ -1,0 +1,81 @@
+<div class="eventlog">
+    <h1>Event Log</h1>
+
+    <!-- FILTER CARD -->
+    <p-card class="filter-card">
+        <div class="filter-row">
+
+            <p-dropdown [options]="services" [(ngModel)]="selectedService" placeholder="Select Service"
+                class="filter-item">
+            </p-dropdown>
+
+            <p-multiSelect [options]="levels" [(ngModel)]="selectedLevels" placeholder="Select Level"
+                optionLabel="label" [filter]="true" class="filter-item">
+            </p-multiSelect>
+
+            <p-calendar [(ngModel)]="startDate" placeholder="Start Date" showIcon="true" dateFormat="yy-mm-dd"
+                class="filter-item">
+            </p-calendar>
+
+            <p-calendar [(ngModel)]="endDate" placeholder="End Date" showIcon="true" dateFormat="yy-mm-dd"
+                class="filter-item">
+            </p-calendar>
+
+            <div class="button-group">
+                <button pButton label="Submit" class="submit-btn" (click)="submit()"></button>
+                <button pButton label="Clear" class="clear-btn" (click)="clear()"></button>
+            </div>
+        </div>
+    </p-card>
+
+    <!-- RESULT CARD -->
+    <p-card class="result-card">
+
+        <div class="result-header">
+            <h2 [style.visibility]="submitted ? 'visible' : 'hidden'">
+                {{ generatedTitle || 'Placeholder Title' }}
+            </h2>
+
+            <div class="result-buttons">
+                <button pButton label="Table" class="table-btn" [disabled]="!submitted" (click)="openTable()">
+                </button>
+
+                <button pButton label="Chart" class="chart-btn" [disabled]="!submitted" (click)="openChart()">
+                </button>
+
+                <button pButton label="Download CSV" class="csv-btn" [disabled]="!submitted || !tableData.length"
+                    (click)="downloadCSV()">
+                </button>
+
+            </div>
+        </div>
+
+        <div class="chart-container" *ngIf="showChart">
+            <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
+        </div>
+
+        <!-- TABLE -->
+        <div *ngIf="showTable" class="table-container">
+            <p-table [value]="tableData" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10,20,30]"
+                styleClass="p-datatable-sm">
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Time</th>
+                        <th>{{ runColumnName }}</th>
+                        <th>{{ tripColumnName }}</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-row>
+                    <tr>
+                        <td>{{ row.time }}</td>
+                        <td>{{ row.run }}</td>
+                        <td>{{ row.trip }}</td>
+                    </tr>
+                </ng-template>
+
+            </p-table>
+        </div>
+    </p-card>
+</div>

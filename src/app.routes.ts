@@ -29,10 +29,12 @@ import { FloorComponent } from './app/pages/floor/floor.component';
 import { AppLayout2 } from './app/layout/component/app.layout-2';
 import { DescriptionComponent } from './app/pages/description/description.component';
 import { DesignComponent } from './app/pages/design/design.component';
+import { EventlogComponent } from './app/pages/eventlog/eventlog.component';
 
 export const appRoutes: Routes = [
     // Redirect the root URL to login
-    { path: '', pathMatch: 'full', redirectTo: 'auth/login' },
+    // { path: '', pathMatch: 'full', redirectTo: 'auth/login' }, //tukar dekat sini
+    { path: '', pathMatch: 'full', redirectTo: '/package/landing' },
     // { path: 'catalogue', pathMatch: 'full', component: CatalogueComponent },
     // Load auth routes early to avoid capturing by the shell route
     // { path: 'auth', loadChildren: () => import('./app/pages/auth/auth.routes').then(m => m.default) },
@@ -87,19 +89,13 @@ export const appRoutes: Routes = [
             { path: 'alarm', component: AlarmComponent },
             { path: 'floor', component: FloorComponent },
             { path: 'dashboard-a', component: DashboardAComponent },
+            { path: 'eventlog', component: EventlogComponent},
             // { path: 'login-1', component: Login1Component },
             // { path: 'landing', component: LandingPageComponent },
             // { path: 'settings', component: SettingsComponent },
             // { path: 'testing-page', component: Test },
         ]
     },
-    // {
-    //     path: 'unity',
-    //     component: AppLayout3,
-    //     children: [
-    //         { path: 'description', component: DescriptionComponent}
-    //     ]
-    // },
     {
         path: 'package',
         component: AppLayout2,

@@ -49,7 +49,8 @@ export class AppMenu {
                             ]}]},
 
                     {label: 'Alarm',icon: 'pi pi-exclamation-triangle',routerLink: ['/main/alarm']},
-                    {label: 'User List',icon: 'pi pi-users',routerLink: ['/main/user']}
+                    {label: 'User List',icon: 'pi pi-users',routerLink: ['/main/user']},
+                    {label: 'Event Log', icon: 'pi pi-warehouse', routerLink: ['/main/eventlog']},
                 ]
             }
         ];

@@ -1,0 +1,85 @@
+.eventlog {
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.eventlog h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: -8px;
+}
+
+.filter-card {
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: nowrap;  
+}
+
+.filter-item {
+    width: 220px;
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;
+}
+
+.submit-btn {
+    background-color: #007958 !important;
+    border: none !important;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.submit-btn:hover {
+    background-color: #10b981 !important;
+}
+
+.clear-btn {
+    background-color: #9ca3af !important;
+    border: none !important;
+    border-radius: 8px;
+    color: white !important;
+}
+
+.clear-btn:hover {
+    background-color: #d4d4d4 !important;
+}
+
+.result-card {
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.result-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top:10px;
+}
+
+.result-buttons {
+    display: flex;
+    gap: 14px;
+}
+
+.chart-container {
+    height: 200px;
+}
+
+
