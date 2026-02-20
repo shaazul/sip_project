@@ -20,13 +20,13 @@ export class errorInterceptor implements HttpInterceptor {
                     
                     // Check if current page is login page
                     const currentUrl = window.location.pathname;
-                    const isLoginPage = currentUrl.includes('/auth/login') || currentUrl.includes('/login');
+                    // const isLoginPage = currentUrl.includes('/auth/login') || currentUrl.includes('/login');
                     
-                    if (!isLoginPage) {
-                        localStorage.clear();
-                        window.location.href = `${environment.routeToLogin}/auth/login`;
-                        // location.reload();
-                    }
+                    // if (!isLoginPage) {
+                    //     localStorage.clear();
+                    //     window.location.href = `${environment.routeToLogin}/auth/login`;
+                    //     // location.reload();
+                    // }
                 } else if (error.status === 419) {
                     this.messageService.add({
                         severity: 'error',
@@ -36,13 +36,13 @@ export class errorInterceptor implements HttpInterceptor {
                     
                     // Check if current page is login page
                     const currentUrl = window.location.pathname;
-                    const isLoginPage = currentUrl.includes('/auth/login') || currentUrl.includes('/login');
+                    // const isLoginPage = currentUrl.includes('/auth/login') || currentUrl.includes('/login');
                     
-                    if (!isLoginPage) {
-                        localStorage.clear();
-                        window.location.href = `${environment.routeToLogin}/auth/login`;
-                        // location.reload();
-                    }
+                    // if (!isLoginPage) {
+                    //     localStorage.clear();
+                    //     window.location.href = `${environment.routeToLogin}/auth/login`;
+                    //     // location.reload();
+                    // }
                 } else if (error.status === 500) {
                     this.messageService.add({
                         severity: 'error',

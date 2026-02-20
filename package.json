@@ -5,8 +5,6 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "start:admin": "ng serve --port 4201 --proxy-config proxy.conf.json",
-    "build:admin": "ng build --configuration production --base-href /admin/",
     "watch": "ng build --watch --configuration development",
     "format": "prettier --write \"**/*.{js,mjs,ts,mts,d.ts,html}\" --cache",
     "test": "ng test"
