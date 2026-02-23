@@ -1,6 +1,6 @@
 # SIP Project – Web Monitoring System
 
-## 📌 Description
+## 📍 Description
 This project is developed using Angular and PrimeNG 19.  
 It is a web-based monitoring system that includes dashboard navigation, breaker summary, event logs, and authentication.
 
@@ -32,7 +32,7 @@ ng version
 
 ---
 
-## 📦 Installation
+## 📂 Installation
 
 1. Clone the repository:
 
@@ -70,7 +70,8 @@ http://localhost:4200
 
 ---
 
-## 👨‍💻 Author
+## 🌸 Author
 
 Farisha Mohamad Zulkefli  
 SIP Intern – Web Monitoring System Development
+
