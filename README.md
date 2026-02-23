@@ -1,33 +1,76 @@
-📌 Description
-This project is developed using Angular and PrimeNG 19.
+# SIP Project – Web Monitoring System
 
-🛠️ Tech Stack
-Frontend: Angular
-UI Library: PrimeNG
-Routing: Angular Router
-Styling: SCSS / CSS
-Authentication: Custom AuthService
-Version Control: Git & GitHub
+## 📌 Description
+This project is developed using Angular and PrimeNG 19.  
+It is a web-based monitoring system that includes dashboard navigation, breaker summary, event logs, and authentication.
 
-⚙️ Requirements
-Before running the project, make sure you have installed:
-1. Node.js (v16 or above recommended)
-2. Angular CLI
-   
-⚙️ To check versions:
+---
+
+## 🛠️ Tech Stack
+- Frontend: Angular  
+- UI Library: PrimeNG 19  
+- Routing: Angular Router  
+- Styling: SCSS / CSS  
+- Authentication: Custom AuthService  
+- Version Control: Git & GitHub  
+
+---
+
+## ⚙️ Requirements
+
+Before running the project, make sure you have:
+
+- Node.js (v16 or above recommended)  
+- Angular CLI  
+
+To check versions:
+
+```bash
 node -v
 ng version
+```
 
-📦 How to Install
-1. Clone the repository: git clone https://github.com/shaazul/sip_project.git
-2. Navigate into the project folder: cd sip_project
-3. Install all dependencies: npm install
+---
 
-▶️ How to Run
-1. Start the development server: ng serve
-2. Then open your browser and go to: http://localhost:4200
+## 📦 Installation
 
-👨‍💻 Author
-Farisha Mohamad Zulkefli
-SIP Intern - Web Monitoring System Development
-<img width="1903" height="1075" alt="image" src="https://github.com/user-attachments/assets/e294598a-77ed-4b2d-814c-1f5c46bf23cb" />
+1. Clone the repository:
+
+```bash
+git clone https://github.com/shaazul/sip_project.git
+```
+
+2. Navigate into the project folder:
+
+```bash
+cd sip_project
+```
+
+3. Install all dependencies:
+
+```bash
+npm install
+```
+
+---
+
+## ▶️ Run (Development Mode)
+
+Start the development server:
+
+```bash
+ng serve
+```
+
+Open your browser and go to:
+
+```
+http://localhost:4200
+```
+
+---
+
+## 👨‍💻 Author
+
+Farisha Mohamad Zulkefli  
+SIP Intern – Web Monitoring System Development
