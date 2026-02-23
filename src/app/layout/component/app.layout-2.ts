@@ -113,47 +113,47 @@ export class AppLayout2 {
             this.hideMenu();
         });
 
-        this.route.queryParams.subscribe((params) => {
-            const token = localStorage.getItem('token');
-            const data = localStorage.getItem('userData');
-            // if(params['token'] !== undefined && params['user'] !== undefined){
-            // if (params['token'] !== undefined) {
-            //     console.log('masuk sini takkkkkkkkk')
-            //     localStorage.setItem('token', params['token']);
-            //     this.apiGetUserDetails();
-            //     // localStorage.setItem('userData2', params['user'])
-            // }
+        // this.route.queryParams.subscribe((params) => {
+        //     const token = localStorage.getItem('token');
+        //     const data = localStorage.getItem('userData');
+        //     // if(params['token'] !== undefined && params['user'] !== undefined){
+        //     // if (params['token'] !== undefined) {
+        //     //     console.log('masuk sini takkkkkkkkk')
+        //     //     localStorage.setItem('token', params['token']);
+        //     //     this.apiGetUserDetails();
+        //     //     // localStorage.setItem('userData2', params['user'])
+        //     // }
 
-            this.apiGetUserDetails();
-            //  if(!token && !data) {
-            //     localStorage.setItem('token', params['token'])
-            //     localStorage.setItem('userData', params['user'])
-            //  }
-        });
+        //     this.apiGetUserDetails();
+        //     //  if(!token && !data) {
+        //     //     localStorage.setItem('token', params['token'])
+        //     //     localStorage.setItem('userData', params['user'])
+        //     //  }
+        // });
     }
 
-    apiGetUserDetails() {
-        const url = environment.apiEndPoint + environment.api_base + '/user/detail';
+    // apiGetUserDetails() {
+    //     const url = environment.apiEndPoint + environment.api_base + '/user/detail';
 
-        this.httpService.getData(url).subscribe({
-            next: (response: any) => {
-                const user: any = response.user
-                const jsonString = JSON.stringify(user);
-                localStorage.setItem('userData', jsonString);
+    //     this.httpService.getData(url).subscribe({
+    //         next: (response: any) => {
+    //             const user: any = response.user
+    //             const jsonString = JSON.stringify(user);
+    //             localStorage.setItem('userData', jsonString);
 
-                const layout = {
-                    preset: user.preferences.preset,
-                    primary: user.preferences.primary,
-                    surface: user.preferences.surface,
-                    darkTheme: user.preferences.darkTheme,
-                    menuMode: 'overlay'
-                };
+    //             const layout = {
+    //                 preset: user.preferences.preset,
+    //                 primary: user.preferences.primary,
+    //                 surface: user.preferences.surface,
+    //                 darkTheme: user.preferences.darkTheme,
+    //                 menuMode: 'overlay'
+    //             };
 
-                localStorage.setItem('layout-config', JSON.stringify(layout));
-            },
-            error: (error) => { }
-        });
-    }
+    //             localStorage.setItem('layout-config', JSON.stringify(layout));
+    //         },
+    //         error: (error) => { }
+    //     });
+    // }
 
     isOutsideClicked(event: MouseEvent) {
         const sidebarEl = document.querySelector('.layout-sidebar');

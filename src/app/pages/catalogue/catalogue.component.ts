@@ -14,13 +14,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./catalogue.component.scss']
 })
 export class CatalogueComponent {
-    constructor(private router: Router) { }
+  constructor(private router: Router) { }
 
   goToDashboardComponent() {
     this.router.navigate(['/package/login-1']);
   }
 
-    goToUnityComponent() {
+  goToUnityComponent() {
     this.router.navigate(['/package/description']);
   }
 }
