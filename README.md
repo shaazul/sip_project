@@ -1,4 +1,4 @@
-# SIP Project – Web Monitoring System
+# 🌸 SIP Project – Web Monitoring System 🌸
 
 ## 📍 Description
 This project is developed using Angular and PrimeNG 19.  
@@ -70,8 +70,9 @@ http://localhost:4200
 
 ---
 
-## 🌸 Author
+## 👩🏻‍💻 Author
 
 Farisha Mohamad Zulkefli  
 SIP Intern – Web Monitoring System Development
+
 
