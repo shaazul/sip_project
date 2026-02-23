@@ -21,12 +21,12 @@ export class IconService {
         );
     }
 
-    getWeatherIcon(condition: string): string {
-        const normalized = (condition || '').toLowerCase();
-        if (normalized.includes('sun')) return 'assets/icons/Sunny.png';
-        if (normalized.includes('rain')) return 'assets/icons/Rain.png';
-        if (normalized.includes('cloud')) return 'assets/icons/Cloudy.png';
-        if (normalized.includes('storm') || normalized.includes('thunder')) return 'assets/icons/Rain.png';
-        return 'assets/icons/Cloudy.png';
-    }
+    // getWeatherIcon(condition: string): string {
+    //     const normalized = (condition || '').toLowerCase();
+    //     if (normalized.includes('sun')) return 'assets/icons/Sunny.png';
+    //     if (normalized.includes('rain')) return 'assets/icons/Rain.png';
+    //     if (normalized.includes('cloud')) return 'assets/icons/Cloudy.png';
+    //     if (normalized.includes('storm') || normalized.includes('thunder')) return 'assets/icons/Rain.png';
+    //     return 'assets/icons/Cloudy.png';
+    // }
 }

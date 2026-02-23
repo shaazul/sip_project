@@ -117,11 +117,11 @@ export class AppSidebar {
             primary: this.layoutService.layoutConfig().primary,
             surface: this.layoutService.layoutConfig().surface
         } as any;
-        this.generalService.updateUserPreference(prefs).subscribe({
-            next: () => { },
-            error: () => {
-                this.messageService.add({ severity: 'error', summary: 'Failed', detail: 'Could not save theme preference' });
-            }
-        });
+        // this.generalService.updateUserPreference(prefs).subscribe({
+        //     next: () => { },
+        //     error: () => {
+        //         this.messageService.add({ severity: 'error', summary: 'Failed', detail: 'Could not save theme preference' });
+        //     }
+        // });
     }
 }

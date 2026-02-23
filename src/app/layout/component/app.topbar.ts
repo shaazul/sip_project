@@ -86,8 +86,8 @@ export class AppTopbar implements OnDestroy {
     greeting: string = 'HELLO';
     currentTime: string = '';
     temperature: number = 25.4;
-    weatherIcon: string = 'assets/icons/Cloudy.png';
-    announcementText: string = '';
+    // weatherIcon: string = 'assets/icons/Cloudy.png';
+    // announcementText: string = '';
 
     userMenuItems: MenuItem[] = [];
 
@@ -104,14 +104,14 @@ export class AppTopbar implements OnDestroy {
     ) {
         this.loadUser();
         this.updateTime();
-        this.loadAnnouncement();
-        this.loadWeather();
+        // this.loadAnnouncement();
+        // this.loadWeather();
 
         this.subscription = interval(30000).subscribe(() => {
             this.loadUser();
             this.updateTime();
-            this.loadAnnouncement();
-            this.loadWeather();
+            // this.loadAnnouncement();
+            // this.loadWeather();
         });
         this.timeSubscription = interval(1000).subscribe(() => this.updateTime());
     }
@@ -165,33 +165,33 @@ export class AppTopbar implements OnDestroy {
         this.authService.logout();
     }
 
-    private loadAnnouncement() {
-        this.generalService.getAnnouncement().subscribe({
-            next: (resp: any) => {
-                const list = resp?.announcements || resp?.data || [];
-                if (list.length === 0) {
-                    this.announcementText = 'No announcement today';
-                } else {
-                    this.announcementText = list.map((x: any) => x.message).join(' ● ') || ' ';
-                }
-            },
-            error: () => { this.announcementText = ' '; }
-        });
-    }
+    // private loadAnnouncement() {
+    //     this.generalService.getAnnouncement().subscribe({
+    //         next: (resp: any) => {
+    //             const list = resp?.announcements || resp?.data || [];
+    //             if (list.length === 0) {
+    //                 this.announcementText = 'No announcement today';
+    //             } else {
+    //                 this.announcementText = list.map((x: any) => x.message).join(' ● ') || ' ';
+    //             }
+    //         },
+    //         error: () => { this.announcementText = ' '; }
+    //     });
+    // }
 
-    private loadWeather() {
-        this.generalService.getWeather().subscribe({
-            next: (resp: any) => {
-                const w = resp?.weather || resp?.data || {};
-                const temp = w?.temperature ?? w?.temp;
-                const condition = w?.condition || '';
-                this.temperature = typeof temp === 'string' ? parseFloat(temp) : (temp ?? this.temperature);
-                this.weatherIcon = this.iconService.getWeatherIcon(condition);
-                this.updateMenuItems();
-            },
-            error: () => { }
-        });
-    }
+    // private loadWeather() {
+    //     this.generalService.getWeather().subscribe({
+    //         next: (resp: any) => {
+    //             const w = resp?.weather || resp?.data || {};
+    //             const temp = w?.temperature ?? w?.temp;
+    //             const condition = w?.condition || '';
+    //             this.temperature = typeof temp === 'string' ? parseFloat(temp) : (temp ?? this.temperature);
+    //             this.weatherIcon = this.iconService.getWeatherIcon(condition);
+    //             this.updateMenuItems();
+    //         },
+    //         error: () => { }
+    //     });
+    // }
 
     apiGetUserDetails() {
         const user = localStorage.getItem('userData');

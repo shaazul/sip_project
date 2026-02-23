@@ -9,21 +9,21 @@ export class GeneralService {
 
     constructor(private http: HttpClient) {}
 
-    getAnnouncement(): Observable<any> {
-        return this.http.get(`${this.base}/announcement`);
-    }
+    // getAnnouncement(): Observable<any> {
+    //     return this.http.get(`${this.base}/announcement`);
+    // }
 
-    getWeather(): Observable<any> {
-        return this.http.get(`${this.base}/weather`);
-    }
+    // getWeather(): Observable<any> {
+    //     return this.http.get(`${this.base}/weather`);
+    // }
 
-    getUserDetail(): Observable<any> {
-        return this.http.get(`${this.base}/user/detail`);
-    }
+    // getUserDetail(): Observable<any> {
+    //     return this.http.get(`${this.base}/user/detail`);
+    // }
 
-    updateUserPreference(payload: any): Observable<any> {
-        return this.http.post(`${this.base}/user/preference`, payload);
-    }
+    // updateUserPreference(payload: any): Observable<any> {
+    //     return this.http.post(`${this.base}/user/preference`, payload);
+    // }
 }
 
 

@@ -139,51 +139,51 @@ export class Login implements OnInit {
         this.authService.login(username, password).subscribe({
             next: () => {
                 // After login, fetch user details (greeting + preferences)
-                this.generalService.getUserDetail().subscribe({
-                    next: (resp: any) => {
-                        let user: any = {};
-                        let prefs: any = {};
-                        try {
-                            user = resp?.user || resp?.data?.user || resp?.data || {};
-                            prefs = user?.preferences || {};
-                            localStorage.setItem('userData', JSON.stringify(user));
-                        } catch {}
+                // this.generalService.getUserDetail().subscribe({
+                //     next: (resp: any) => {
+                //         let user: any = {};
+                //         let prefs: any = {};
+                //         try {
+                //             user = resp?.user || resp?.data?.user || resp?.data || {};
+                //             prefs = user?.preferences || {};
+                //             localStorage.setItem('userData', JSON.stringify(user));
+                //         } catch {}
 
-                        const detailMessage = resp?.message || 'User details retrieved successfully';
-                        // Persist toast request for landing page to pick up
-                        try {
-                            sessionStorage.setItem('postLoginToast', JSON.stringify({ severity: 'success', summary: 'Success', detail: detailMessage }));
-                        } catch {}
-                        // Navigate first; toast will be shown on landing
-                        this.router.navigateByUrl('/landing').then(() => {
-                            // Apply preferences AFTER navigation so login screen visuals don't change
-                            this.layoutService.layoutConfig.update((state) => ({
-                                ...state,
-                                darkTheme: typeof prefs.darkTheme === 'boolean' ? prefs.darkTheme : state.darkTheme,
-                                menuMode: 'overlay',
-                                preset: prefs.preset || state.preset,
-                                primary: prefs.primary || state.primary,
-                                surface: prefs.surface || state.surface
-                            }));
-                            this.isLoading = false;
-                            // Remember me handling
-                            try {
-                                if (this.checked) {
-                                    localStorage.setItem('rememberMeEmail', this.username);
-                                    localStorage.setItem('rememberMeChecked', 'true');
-                                } else {
-                                    localStorage.removeItem('rememberMeEmail');
-                                    localStorage.setItem('rememberMeChecked', 'false');
-                                }
-                            } catch {}
-                        });
-                    },
-                    error: () => {
-                        // If user detail fails, continue to app
-                        this.isLoading = false;
-                        this.router.navigateByUrl('/landing');
-                    }
-                });
+                //         const detailMessage = resp?.message || 'User details retrieved successfully';
+                //         // Persist toast request for landing page to pick up
+                //         try {
+                //             sessionStorage.setItem('postLoginToast', JSON.stringify({ severity: 'success', summary: 'Success', detail: detailMessage }));
+                //         } catch {}
+                //         // Navigate first; toast will be shown on landing
+                //         this.router.navigateByUrl('/landing').then(() => {
+                //             // Apply preferences AFTER navigation so login screen visuals don't change
+                //             this.layoutService.layoutConfig.update((state) => ({
+                //                 ...state,
+                //                 darkTheme: typeof prefs.darkTheme === 'boolean' ? prefs.darkTheme : state.darkTheme,
+                //                 menuMode: 'overlay',
+                //                 preset: prefs.preset || state.preset,
+                //                 primary: prefs.primary || state.primary,
+                //                 surface: prefs.surface || state.surface
+                //             }));
+                //             this.isLoading = false;
+                //             // Remember me handling
+                //             try {
+                //                 if (this.checked) {
+                //                     localStorage.setItem('rememberMeEmail', this.username);
+                //                     localStorage.setItem('rememberMeChecked', 'true');
+                //                 } else {
+                //                     localStorage.removeItem('rememberMeEmail');
+                //                     localStorage.setItem('rememberMeChecked', 'false');
+                //                 }
+                //             } catch {}
+                //         });
+                //     },
+                //     error: () => {
+                //         // If user detail fails, continue to app
+                //         this.isLoading = false;
+                //         this.router.navigateByUrl('/landing');
+                //     }
+                // });
             },
         });
     }
