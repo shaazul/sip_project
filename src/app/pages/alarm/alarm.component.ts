@@ -294,7 +294,6 @@ export class AlarmComponent implements OnInit {
     );
   }
 
-
   exportToCSV(isHistory = false) {
     const data = isHistory
       ? this.filteredHistoryAlarms

@@ -33,7 +33,6 @@ export class MvComponent {
 
   globalSearch = '';
 
-  // ✅ ADD THESE
   levelFilter = '';
   descFilter = '';
   runStatusFilter: string | null = null;
@@ -91,23 +90,19 @@ export class MvComponent {
     }
   ];
 
-
   infoVisible = false;
   infoAsset: any = null;
 
   clear(table: any) {
     table.clear();
 
-    // global
     this.globalSearch = '';
 
-    // column filters
     this.levelFilter = '';
     this.descFilter = '';
     this.runStatusFilter = null;
     this.controlModeFilter = null;
   }
-
 
   onFilterChange(value: any, filter: Function) {
     setTimeout(() => filter(value), 0);

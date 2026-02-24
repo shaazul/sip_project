@@ -88,7 +88,6 @@
     margin-top: 12px;
 }
 
-/* Note */
 .catalogue-note {
     margin-top: 40px;
     font-size: 13px;
@@ -96,27 +95,6 @@
     margin-left: auto;
     margin-right: auto;
 }
-
-// :host ::ng-deep .custom-preview-btn {
-//     display: flex;
-//     justify-content: center;
-//     margin-left: auto;
-//     margin-right: auto;
-//     margin-top: 28px;
-//     background-color: #007958;
-//     border-color: #007958;
-//     color: #fff;
-// }
-
-// :host ::ng-deep .custom-preview-btn:hover {
-//     background-color: #10b981;
-//     border-color: #10b981;
-// }
-
-// :host ::ng-deep .custom-preview-btn:active {
-//     background-color: #005a42;
-//     border-color: #005a42;
-// }
 
 :host ::ng-deep .custom-preview-btn {
     display: flex;
@@ -144,7 +122,6 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
-
 
 @media (max-width: 768px) {
 

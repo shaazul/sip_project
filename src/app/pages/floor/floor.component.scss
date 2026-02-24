@@ -139,20 +139,10 @@
     white-space: normal;
 }
 
-// .summary-block {
-//     margin-bottom: 1rem;
-// }
-
 .summary-title {
     font-weight: 600;
     margin-bottom: 6px;
 }
-
-// .summary-table {
-//     width: 100%;
-//     // min-width: 600px;
-//     border-collapse: collapse;
-// }
 
 .summary-table th {
     background: #2c3e50;
@@ -182,7 +172,6 @@
 .summary-block+.summary-block {
     margin-top: 20px;
 }
-
 
 .ahu-details-table {
     width: 100%;
@@ -246,9 +235,8 @@
     }
 
     .building-panel {
-        position: static; // stop sticky
+        position: static;
         margin-bottom: 24px;
-        
     }
 }
 

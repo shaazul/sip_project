@@ -16,10 +16,10 @@
 }
 
 .ahu-toolbar {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .ahu-dialog-layout {
@@ -35,10 +35,10 @@
 }
 
 .ahu-image {
-    width: 100%;
-    height: auto;
-    max-width: none;
-    object-fit: contain;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
 }
 
 .ahu-image-title {
@@ -90,38 +90,37 @@
 }
 
 .ahu-status-legend {
-    margin-top: 0.75rem;
-    padding-top: 0.75rem;
-    max-width: 420px;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  max-width: 420px;
 }
 
 .legend-title {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .legend-row {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
 .legend-color {
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
 }
 
-/* AHU STATES */
 .legend-color.on {
-    background: #22c55e; // green
+  background: #22c55e;
 }
 
 .legend-color.off {
-    background: #9ca3af; // grey
+  background: #9ca3af;
 }
 
 .legend-color.trip {
-    background: #ef4444; // red
+  background: #ef4444;
 }

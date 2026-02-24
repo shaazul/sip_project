@@ -16,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppFooter, ToastModule ],
+    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppFooter, ToastModule],
     template: `
     <!-- <div class="layout-wrapper" [ngClass]="containerClass">
             <app-topbar></app-topbar>

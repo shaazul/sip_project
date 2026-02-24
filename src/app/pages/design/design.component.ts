@@ -19,17 +19,18 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './design.component.html',
   styleUrl: './design.component.scss'
 })
+
 export class DesignComponent {
-    activeTab: 'design' | 'desc' = 'design';
+  activeTab: 'design' | 'desc' = 'design';
 
   activeStep = 1;
   constructor(private router: Router) { }
 
-    goToDescription() {
+  goToDescription() {
     this.router.navigate(['package/description']);
   }
 
-  goToDesign(){
+  goToDesign() {
     this.router.navigate(['package/design'])
   }
 }

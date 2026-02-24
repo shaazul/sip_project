@@ -28,7 +28,7 @@ import moment from 'moment-timezone';
         OverlayBadgeModule,
         MenuModule,
         ButtonModule,
-        DialogModule, 
+        DialogModule,
         AppConfigurator
     ],
     template: `

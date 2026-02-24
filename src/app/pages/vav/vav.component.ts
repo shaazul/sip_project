@@ -27,9 +27,6 @@ import { ButtonModule } from 'primeng/button';
 })
 export class VavComponent {
 
-  /* =========================
-   * FILTER STATE
-   * ========================= */
   globalSearch = '';
   selectedLevel = '';
   selectedRoomId = '';
@@ -37,9 +34,6 @@ export class VavComponent {
 
   vavVisible = false;
 
-  /* =========================
-   * ORIGINAL DATA (DO NOT TOUCH)
-   * ========================= */
   originalVavData = [
     {
       level: 'LGF',
@@ -97,14 +91,8 @@ export class VavComponent {
     }
   ];
 
-  /* =========================
-   * DISPLAY DATA
-   * ========================= */
   vavData = [...this.originalVavData];
 
-  /* =========================
-   * VAV DETAIL DATA (DIALOG)
-   * ========================= */
   vavDetailData = [
     { id: '01', roomTemp: 25.3, damper: 100, setpoint: 23.0 },
     { id: '02', roomTemp: 25.5, damper: 100, setpoint: 23.0 },
@@ -117,15 +105,11 @@ export class VavComponent {
     { id: '10', roomTemp: 24.2, damper: 100, setpoint: 23.0 }
   ];
 
-  /* =========================
-   * FILTER ENGINE
-   * ========================= */
 applyFilters() {
   const keyword = this.globalSearch.trim().toLowerCase();
 
   this.vavData = this.originalVavData.filter(level => {
 
-    // ===== GLOBAL SEARCH =====
     if (keyword) {
       const levelMatch = level.level.toLowerCase().includes(keyword);
 
@@ -139,7 +123,6 @@ applyFilters() {
       }
     }
 
-    // ===== COLUMN FILTER : LEVEL =====
     if (
       this.selectedLevel &&
       !level.level.toLowerCase().includes(this.selectedLevel.toLowerCase())
@@ -147,7 +130,6 @@ applyFilters() {
       return false;
     }
 
-    // ===== ROOM-BASED FILTERS =====
     return level.rooms.some(room => {
 
       if (
@@ -168,7 +150,6 @@ applyFilters() {
     });
   });
 }
-
 
   clear() {
     this.globalSearch = '';

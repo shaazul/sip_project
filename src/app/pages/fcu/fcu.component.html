@@ -23,10 +23,8 @@
         <p-table [value]="fcuData" styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines" [rows]="10"
             [paginator]="true" scrollable="true" scrollHeight="flex">
 
-            <!-- HEADER -->
             <ng-template pTemplate="header">
 
-                <!-- COLUMN TITLES -->
                 <tr>
                     <th style="width:12%">Level</th>
                     <th style="width:26%">Status</th>
@@ -36,35 +34,29 @@
                     <th style="width:10%">Action</th>
                 </tr>
 
-                <!-- FILTER ROW (CUSTOM) -->
                 <tr class="custom-filter-row">
 
-                    <!-- LEVEL -->
                     <th>
                         <input pInputText type="text" placeholder="Search level" [(ngModel)]="filterLevel"
                             (input)="applyFilters()" />
                     </th>
 
-                    <!-- STATUS (FCU NAME) -->
                     <th>
                         <input pInputText type="text" placeholder="Search FCU" [(ngModel)]="filterStatus"
                             (input)="applyFilters()" />
                     </th>
 
-                    <!-- TIMER -->
                     <th>
                         <p-dropdown [options]="timerOptions" placeholder="Any" [showClear]="true"
                             [(ngModel)]="filterTimer" (onChange)="applyFilters()" appendTo="body">
                         </p-dropdown>
                     </th>
 
-                    <!-- ROOM TEMP -->
                     <th>
                         <input pInputText type="text" placeholder="Search temp" [(ngModel)]="filterTemp"
                             (input)="applyFilters()" />
                     </th>
 
-                    <!-- CONTROL MODE -->
                     <th>
                         <p-dropdown [options]="controlModeOptions" placeholder="Any" [showClear]="true"
                             [(ngModel)]="filterMode" (onChange)="applyFilters()" appendTo="body">
@@ -82,7 +74,6 @@
 
                     <td>{{ row.level }}</td>
 
-                    <!-- STATUS -->
                     <td>
                         <div class="cell-wrap">
                             <span *ngFor="let fcu of row.fcus" class="pill"
@@ -92,7 +83,6 @@
                         </div>
                     </td>
 
-                    <!-- TIMER -->
                     <td>
                         <div class="cell-wrap">
                             <ng-container *ngFor="let fcu of row.fcus">
@@ -104,7 +94,6 @@
                         </div>
                     </td>
 
-                    <!-- TEMP -->
                     <td>
                         <div class="cell-wrap">
                             <ng-container *ngFor="let fcu of row.fcus">
@@ -115,7 +104,6 @@
                         </div>
                     </td>
 
-                    <!-- MODE -->
                     <td>
                         <div class="cell-wrap">
                             <span *ngFor="let fcu of row.fcus" class="pill mode">
@@ -124,7 +112,6 @@
                         </div>
                     </td>
 
-                    <!-- ACTION -->
                     <td>
                         <button pButton icon="pi pi-eye" class="p-button-text p-button-sm"
                             (click)="openLevelDialog(row)">

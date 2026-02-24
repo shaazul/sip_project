@@ -30,27 +30,33 @@ export class AppMenu {
             {
                 label: 'MENU',
                 items: [
-                    {label: 'Dashboard',icon: 'pi pi-th-large', routerLink: ['/main/dashboard-a']},
-                    {label: 'Floor Navigation',icon: 'pi pi-sitemap', routerLink: ['/main/floor']},
-                    {label: 'Chiller Plant',icon: 'pi pi-slack',routerLink: ['/main/chiller']},
-                    {label: 'Services', icon: 'pi pi-wrench', items: [
-                            {label: 'Air Conditioning',items: [
-                                    {label: 'Air Handling Unit (AHU)',routerLink: ['/main/ahu']},
-                                    {label: 'Variable Air Volume (VAV)',routerLink: ['/main/vav']},
-                                    {label: 'Fan Coil Unit (FCU)',routerLink: ['/main/fcu']}
-                            ]},
+                    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: ['/main/dashboard-a'] },
+                    { label: 'Floor Navigation', icon: 'pi pi-sitemap', routerLink: ['/main/floor'] },
+                    { label: 'Chiller Plant', icon: 'pi pi-slack', routerLink: ['/main/chiller'] },
+                    {
+                        label: 'Services', icon: 'pi pi-wrench', items: [
+                            {
+                                label: 'Air Conditioning', items: [
+                                    { label: 'Air Handling Unit (AHU)', routerLink: ['/main/ahu'] },
+                                    { label: 'Variable Air Volume (VAV)', routerLink: ['/main/vav'] },
+                                    { label: 'Fan Coil Unit (FCU)', routerLink: ['/main/fcu'] }
+                                ]
+                            },
 
-                            {label: 'Mechanical Ventilation',routerLink: ['/main/mv']},
-                            {label: 'Generator Set',routerLink: ['/main/genset']},
-                            {label: 'Pump',routerLink: ['/main/pump']},
-                            {label: 'Electrical', items: [
-                                    {label: 'Power Distribution Board (PDB)',routerLink: ['/main/pdb']},
-                                    {label: 'Breaker',routerLink: ['/main/breaker']}
-                            ]}]},
+                            { label: 'Mechanical Ventilation', routerLink: ['/main/mv'] },
+                            { label: 'Generator Set', routerLink: ['/main/genset'] },
+                            { label: 'Pump', routerLink: ['/main/pump'] },
+                            {
+                                label: 'Electrical', items: [
+                                    { label: 'Power Distribution Board (PDB)', routerLink: ['/main/pdb'] },
+                                    { label: 'Breaker', routerLink: ['/main/breaker'] }
+                                ]
+                            }]
+                    },
 
-                    {label: 'Alarm',icon: 'pi pi-exclamation-triangle',routerLink: ['/main/alarm']},
-                    {label: 'User List',icon: 'pi pi-users',routerLink: ['/main/user']},
-                    {label: 'Event Log', icon: 'pi pi-warehouse', routerLink: ['/main/eventlog']},
+                    { label: 'Alarm', icon: 'pi pi-exclamation-triangle', routerLink: ['/main/alarm'] },
+                    { label: 'User List', icon: 'pi pi-users', routerLink: ['/main/user'] },
+                    { label: 'Event Log', icon: 'pi pi-warehouse', routerLink: ['/main/eventlog'] },
                 ]
             }
         ];

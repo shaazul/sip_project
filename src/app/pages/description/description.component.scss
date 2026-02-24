@@ -3,23 +3,22 @@
 }
 
 .desc-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
 }
 
 .desc-header h1 {
-  font-size: 24px;
-  font-weight: 700;
-  margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
 }
 
 .page-tabs {
-  display: flex;
-  gap: 8px;
+    display: flex;
+    gap: 8px;
 }
-
 
 .header-small-title {
     color: #10b981;
@@ -35,8 +34,8 @@
 }
 
 :host ::ng-deep .p-fieldset-legend {
-  color: #10b981;
-  font-weight: 600;
+    color: #10b981;
+    font-weight: 600;
 }
 
 .unity-layout {
@@ -55,10 +54,10 @@
 }
 
 .unity-tabs {
-  display: flex;
-  justify-content: flex-end;
-  gap: 6px;
-  margin-bottom: 12px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-bottom: 12px;
 }
 
 .tab-btn {

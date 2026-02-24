@@ -37,19 +37,16 @@
 
                 <!-- FILTER ROW -->
                 <tr>
-                    <!-- LEVEL -->
                     <th>
                         <input pInputText type="text" placeholder="Search level" [(ngModel)]="levelFilter"
                             (input)="mvTable.filter(levelFilter, 'level', 'contains')" style="width:100%" />
                     </th>
 
-                    <!-- DESCRIPTION -->
                     <th>
                         <input pInputText type="text" placeholder="Search description" [(ngModel)]="descFilter"
                             (input)="mvTable.filter(descFilter, 'description', 'contains')" style="width:100%" />
                     </th>
 
-                    <!-- RUN STATUS -->
                     <th>
                         <p-dropdown [options]="runStatusOptions" [(ngModel)]="runStatusFilter" placeholder="Any"
                             (onChange)="mvTable.filter(runStatusFilter, 'runStatus', 'equals')" [showClear]="true"
@@ -57,7 +54,6 @@
                         </p-dropdown>
                     </th>
 
-                    <!-- CONTROL MODE -->
                     <th>
                         <p-dropdown [options]="controlModeOptions" [(ngModel)]="controlModeFilter" placeholder="Any"
                             (onChange)="mvTable.filter(controlModeFilter, 'controlMode', 'equals')" [showClear]="true"

@@ -218,7 +218,6 @@ export class FcuComponent implements OnInit {
 
   }
 
-
   clearFilters() {
     this.filterLevel = '';
     this.filterStatus = '';

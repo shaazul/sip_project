@@ -24,10 +24,8 @@
         <p-table [value]="pumpData" styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines" [rows]="10"
             [paginator]="true" scrollable="true" scrollHeight="flex">
 
-            <!-- HEADER -->
             <ng-template pTemplate="header">
 
-                <!-- TITLES -->
                 <tr>
                     <th style="width:12%">Level</th>
                     <th>Description</th>
@@ -36,7 +34,6 @@
                     <th style="width:10%">Action</th>
                 </tr>
 
-                <!-- FILTER ROW -->
                 <tr class="custom-filter-row">
                     <th>
                         <input pInputText placeholder="Search level" [(ngModel)]="filterLevel"
@@ -62,7 +59,6 @@
 
                     </th>
 
-                    <!-- ACTION COLUMN PLACEHOLDER -->
                     <th></th>
                 </tr>
 
@@ -102,13 +98,10 @@
 <p-dialog [(visible)]="pumpInfoVisible" [modal]="true" [draggable]="false" [dismissableMask]="true"
     [style]="{ width: '80vw', maxWidth: '1100px' }" header="{{ pumpInfoAsset?.description }}">
 
-    <!-- STATIC INFO -->
     <div style="margin-bottom:0.75rem; font-weight:600; ">
         Data shown: <span style="color:#22c55e">Past 24 hours</span>
     </div>
 
-
-    <!-- CHART -->
     <div style="height:420px; border:1px solid ; border-radius:12px; padding:1rem">
         <p-chart type="line" [data]="chartData" [options]="chartOptions">
         </p-chart>

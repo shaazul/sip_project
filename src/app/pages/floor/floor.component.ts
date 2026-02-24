@@ -108,9 +108,9 @@ export class FloorComponent {
   }
 
   clearLevel() {
-  this.selectedLevel = null;
-  this.appliedLevel = null;
-}
+    this.selectedLevel = null;
+    this.appliedLevel = null;
+  }
 
   submitFilter() {
     if (!this.selectedLevel) return;

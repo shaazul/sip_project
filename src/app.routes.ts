@@ -32,7 +32,6 @@ import { DesignComponent } from './app/pages/design/design.component';
 import { EventlogComponent } from './app/pages/eventlog/eventlog.component';
 
 export const appRoutes: Routes = [
-    // Redirect the root URL to login
     // { path: '', pathMatch: 'full', redirectTo: 'auth/login' }, //tukar dekat sini
     { path: '', pathMatch: 'full', redirectTo: '/package/landing' },
     // { path: 'catalogue', pathMatch: 'full', component: CatalogueComponent },
@@ -70,12 +69,8 @@ export const appRoutes: Routes = [
     {
         path: 'main',
         component: AppLayout,
-        // data: { theme: 'default' }, // baru tambah sini
-        // canActivate: [AuthGuard],
         children: [
             { path: '', component: LandingPageComponent },
-            // { path: 'landing', component: LandingPageComponent },
-            // { path: 'catalogue', component: CatalogueComponent},
             { path: 'chiller', component: TableComponent },
             { path: 'ahu', component: AhuTableComponent },
             { path: 'vav', component: VavComponent },
@@ -89,17 +84,12 @@ export const appRoutes: Routes = [
             { path: 'alarm', component: AlarmComponent },
             { path: 'floor', component: FloorComponent },
             { path: 'dashboard-a', component: DashboardAComponent },
-            { path: 'eventlog', component: EventlogComponent},
-            // { path: 'login-1', component: Login1Component },
-            // { path: 'landing', component: LandingPageComponent },
-            // { path: 'settings', component: SettingsComponent },
-            // { path: 'testing-page', component: Test },
+            { path: 'eventlog', component: EventlogComponent },
         ]
     },
     {
         path: 'package',
         component: AppLayout2,
-        // data: { theme: 'landing' }, //baru tambah sini
         children: [
             { path: 'landing', component: LandingPageComponent },
             { path: 'catalogue', component: CatalogueComponent },

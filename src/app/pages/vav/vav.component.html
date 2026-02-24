@@ -24,7 +24,6 @@
         <p-table [value]="vavData" dataKey="level" styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines"
             [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10, 25, 50]" [tableStyle]="{ 'min-width': '100%' }">
 
-            <!-- HEADER -->
             <ng-template pTemplate="header">
                 <tr>
                     <th style="width: 12%">Level</th>
@@ -32,7 +31,6 @@
                     <th style="width: 8%">Action</th>
                 </tr>
 
-                <!-- FILTER ROW -->
                 <tr>
                     <th>
                         <input pInputText [(ngModel)]="selectedLevel" (input)="applyFilters()"
@@ -114,7 +112,7 @@
                     </tr>
                 </tbody>
             </table>
-            <!-- LEGEND -->
+
             <div class="vav-legend">
                 <div><span class="legend-box optimum"></span> Optimum Comfort (23°C – 26°C)</div>
                 <div><span class="legend-box warm"></span> Warm (&gt; 26°C)</div>

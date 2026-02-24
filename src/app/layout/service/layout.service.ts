@@ -87,33 +87,33 @@ export class LayoutService {
             if (saved) {
                 this._config = { ...this._config, ...saved };
                 this.layoutConfig.set(this._config);
-            } 
+            }
         }, 500);
 
-         effect(() => {
-                const config = this.layoutConfig();
+        effect(() => {
+            const config = this.layoutConfig();
+            if (config) {
+                this.onConfigUpdate();
+                // Persist on any config change
+                this.persistConfig(config);
+            }
+        });
+
+        effect(() => {
+            const config = this.layoutConfig();
+
+            if (!this.initialized || !config) {
+                this.initialized = true;
+                // Ensure the correct theme class is applied on first load/refresh
+                // so the UI and toggle icon stay in sync
                 if (config) {
-                    this.onConfigUpdate();
-                    // Persist on any config change
-                    this.persistConfig(config);
+                    this.toggleDarkMode(config);
                 }
-            });
+                return;
+            }
 
-            effect(() => {
-                const config = this.layoutConfig();
-
-                if (!this.initialized || !config) {
-                    this.initialized = true;
-                    // Ensure the correct theme class is applied on first load/refresh
-                    // so the UI and toggle icon stay in sync
-                    if (config) {
-                        this.toggleDarkMode(config);
-                    }
-                    return;
-                }
-
-                this.handleDarkModeTransition(config);
-            });
+            this.handleDarkModeTransition(config);
+        });
     }
 
     private handleDarkModeTransition(config: layoutConfig): void {
@@ -134,7 +134,7 @@ export class LayoutService {
             .then(() => {
                 this.onTransitionEnd();
             })
-            .catch(() => {});
+            .catch(() => { });
     }
 
     toggleDarkMode(config?: layoutConfig): void {
@@ -189,7 +189,7 @@ export class LayoutService {
     private persistConfig(config: layoutConfig) {
         try {
             localStorage.setItem(this.storageKey, JSON.stringify(config));
-        } catch {}
+        } catch { }
     }
 
     private getPersistedConfig(): layoutConfig | null {

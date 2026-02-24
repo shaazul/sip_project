@@ -67,7 +67,7 @@
 
 .chiller-image {
   width: 100%;
-  max-width: 700px;
+  max-width: 575px;
   display: block;
   margin-top: 33px;
   margin-bottom: 35px;
@@ -89,7 +89,6 @@
 :host ::ng-deep .p-datatable td {
   white-space: nowrap;
 }
-
 
 :host ::ng-deep .p-datatable table {
   table-layout: auto;

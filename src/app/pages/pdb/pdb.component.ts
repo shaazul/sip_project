@@ -11,7 +11,6 @@ import { Table } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ChartModule } from 'primeng/chart';
 
-
 @Component({
   selector: 'app-pdb',
   standalone: true,
@@ -38,7 +37,6 @@ export class PdbComponent {
   data: any;
   options: any;
 
-
   pdbData = [
     { pdbId: 'PDB-01', location: 'Level 1 - Electrical Room', voltage: '415 / 415', current: '32.5', power: '22.4', energy: '1450', freq: '50', breaker: 'ON', remarks: 'Normal' },
     { pdbId: 'PDB-02', location: 'Level 2 - AHU Area', voltage: '415 / 415', current: '28.1', power: '18.9', energy: '1230', freq: '50', breaker: 'OFF', remarks: 'Maintenance' },
@@ -61,9 +59,9 @@ export class PdbComponent {
   }
 
   closePdbDialog() {
-  this.displayChart = false;
-  this.selectedPdb = null;
-}
+    this.displayChart = false;
+    this.selectedPdb = null;
+  }
 
   viewChart(row: any) {
     this.selectedPdb = row;

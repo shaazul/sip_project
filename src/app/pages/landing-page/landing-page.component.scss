@@ -36,8 +36,8 @@
   font-size: clamp(34px, 4vw, 50px);
   line-height: 1.15;
   font-weight: 700;
-  margin-top:-40px;
-  margin-bottom:30px;
+  margin-top: -40px;
+  margin-bottom: 30px;
 }
 
 .hero-text p {
@@ -107,7 +107,7 @@
   padding: 8px 18px;
   border-radius: 999px;
   border: none;
-  color:#ffffff;
+  color: #ffffff;
   background-color: #10b981;
   font-size: 13px;
   font-weight: 600;
@@ -132,7 +132,7 @@
 .card h4 {
   margin-top: 24px;
   color: #007958;
-}
+} 
 
 .product-img {
   height: clamp(220px, 35vw, 400px);
@@ -176,8 +176,6 @@
 .checklist img {
   width: 18px;
 }
-
-
 
 @media (max-width: 768px) {
   .hero-wrapper {
