@@ -35,7 +35,6 @@ import moment from 'moment-timezone';
 <div class="layout-topbar bg-surface-0 dark:bg-surface-900">
   <div class="flex items-center justify-between w-full px-2 sm:px-3">
     
-    <!-- LEFT: menu + logo -->
     <div class="flex items-center gap-2 sm:gap-3 shrink-0">
       <!-- <button class="layout-menu-button layout-topbar-action" (click)="layoutService.onMenuToggle()">
         <i class="pi pi-bars"></i>
@@ -46,17 +45,14 @@ import moment from 'moment-timezone';
       </a>
     </div>
 
-    <!-- RIGHT: buttons + dark mode toggle -->
     <div class="flex items-center gap-4">
       <button pButton type="button" label="Landing Page" class="p-button-text" routerLink="/package/landing"></button>
       <button pButton type="button" label="Design Packages" class="p-button-text" routerLink="/package/catalogue"></button>
 
-      <!-- Dark mode toggle -->
       <p-button type="button" (onClick)="toggleDarkMode()" [rounded]="true"
         [icon]="isDarkTheme() ? 'pi pi-moon' : 'pi pi-sun'" severity="secondary">
       </p-button>
 
-      <!-- App Configurator -->
       <div class="relative">
         <app-configurator></app-configurator>
       </div>
